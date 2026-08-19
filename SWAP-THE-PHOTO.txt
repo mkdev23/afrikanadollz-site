@@ -1,0 +1,20 @@
+AFRIKANADOLLZ — how to change photos
+=====================================
+
+All images live in the /assets folder. To swap one, just replace the file
+with a new one of the SAME name (keep the filename identical), then redeploy.
+
+  assets/hero.jpg    → the big hero model + "Ready-to-Ship" tile + first product card
+  assets/dolls.jpg   → "Bundles & Closures" tile + second product card
+  assets/blonde.jpg  → "American Blues" tile + fourth product card
+  assets/curly.jpg   → the Atelier close-up + third product card
+  assets/squad.jpg   → the "We're Afrikanadolls" story photo
+  assets/logo.png    → the crest logo (header, story seal, footer)
+
+Best results:
+  - hero.jpg     portrait, ~900 x 1300 px
+  - dolls/squad  landscape or group, ~1100 px wide
+  - curly/blonde portrait close-up, ~640 x 870 px
+  - Export as JPG, quality ~80, keep each under ~250 KB for fast loading.
+
+That's it. Drop the file in, redeploy, done.

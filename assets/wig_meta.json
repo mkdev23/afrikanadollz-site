@@ -1,0 +1,30 @@
+{
+ "straight": {
+  "file": "wig_straight.png",
+  "w": 474,
+  "h": 1232,
+  "eyeL": [
+   74,
+   232
+  ],
+  "eyeR": [
+   184,
+   232
+  ],
+  "interEye": 110.0
+ },
+ "blonde": {
+  "file": "wig_blonde.png",
+  "w": 520,
+  "h": 577,
+  "eyeL": [
+   113.4,
+   257.4
+  ],
+  "eyeR": [
+   253.0,
+   257.4
+  ],
+  "interEye": 139.6
+ }
+}

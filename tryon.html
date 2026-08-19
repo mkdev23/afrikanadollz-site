@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Virtual Try-On — AFRIKANADOLLZ</title>
+<meta name="description" content="See how an AFRIKANADOLLZ unit looks on you before you book. Live try-on and 3D wig preview."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --porcelain:#f6efe3; --porcelain-2:#efe5d3; --paper:#fffaf2;
+  --ink:#141313; --ink-2:#1e1d1c; --ink-soft:#5c554c; --ink-faint:#8b8378;
+  --gilt:#c6972f; --gilt-deep:#8a681c; --gilt-2:#e7be63; --gilt-3:#f0d38f;
+  --champagne:#ead9ae; --honey:#f6d200;
+  --line:rgba(20,19,19,.14); --line-dark:rgba(240,211,143,.20);
+  --shadow:0 24px 60px -28px rgba(20,19,19,.35);
+  --gold-foil:linear-gradient(135deg,#8a6a1e 0%,#c6972f 22%,#f0d38f 42%,#c6972f 55%,#9c7825 70%,#e7be63 88%,#b98c2c 100%);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--porcelain);color:var(--ink);font-family:'Jost',system-ui,sans-serif;font-weight:300;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Bodoni Moda',Georgia,serif;font-weight:700;margin:0;line-height:1.05}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--gilt-deep);font-weight:500}
+.crown{width:1em;height:.78em;fill:var(--gilt-deep);flex:none}
+:focus-visible{outline:2px solid var(--gilt-deep);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;font-family:'Jost';font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:14px 24px;border-radius:2px;cursor:pointer;border:1px solid transparent;transition:.25s;background:none;color:inherit}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold-foil);color:#20170a;font-weight:600}
+.btn-outline{border-color:rgba(20,19,19,.28);color:var(--ink)}
+.btn-outline:hover{background:var(--ink);color:var(--porcelain);border-color:var(--ink)}
+.btn-ghost{border-color:var(--line-dark);color:var(--champagne)}
+.btn-ghost:hover{background:var(--porcelain);color:var(--ink)}
+.btn[disabled]{opacity:.45;pointer-events:none}
+
+.preview-bar{background:var(--honey);color:var(--ink);display:flex;align-items:center;justify-content:center;gap:14px;padding:9px 40px;font-size:12px;position:relative;text-align:center}
+.preview-bar b{font-weight:600}
+.preview-bar button{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--ink);font-size:18px;cursor:pointer}
+
+header{position:sticky;top:0;z-index:40;background:rgba(246,239,227,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;max-width:1360px;margin:0 auto;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .medallion{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 1px var(--gilt),0 0 0 4px rgba(198,151,47,.16)}
+.brand .medallion img{width:80%}
+.brand .wordmark{font-family:'Bodoni Moda';font-weight:700;font-size:13px;letter-spacing:.34em}
+.back{font-size:12px;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+.back:hover{color:var(--gilt-deep)}
+
+.head{padding:52px 0 30px;text-align:center}
+.head h1{font-size:clamp(36px,5.4vw,64px);margin:12px 0 10px}
+.head p{color:var(--ink-soft);max-width:560px;margin:0 auto}
+.head .mark{position:relative;white-space:nowrap;z-index:0}
+.head .mark::before{content:"";position:absolute;left:-.12em;right:-.14em;top:16%;bottom:9%;background:var(--honey);transform:rotate(-1.6deg) skewX(-4deg);border-radius:46% 54% 60% 40%/62% 44% 56% 38%;z-index:-1}
+
+.studio{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;padding-bottom:40px;align-items:start}
+
+/* ---- stage ---- */
+.stage{background:var(--ink);border-radius:4px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+.stage-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line-dark);gap:12px;flex-wrap:wrap}
+.modes{display:inline-flex;border:1px solid var(--line-dark);border-radius:2px;overflow:hidden}
+.modes button{background:none;border:none;color:var(--champagne);font-family:'Jost';font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:9px 16px;cursor:pointer}
+.modes button.on{background:var(--gold-foil);color:#20170a;font-weight:600}
+.stage-top .status{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.stage-top .status.live{color:var(--gilt-2)}
+
+.viewport{position:relative;aspect-ratio:4/3;background:#0c0b0b;display:grid;place-items:center;overflow:hidden}
+#view{width:100%;height:100%;object-fit:contain;display:block}
+video,#photo{display:none}
+.placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:30px;color:var(--champagne)}
+.placeholder svg{width:44px;height:44px;stroke:var(--gilt-2);fill:none;stroke-width:1.2}
+.placeholder p{margin:0;font-size:14px;color:var(--ink-faint);max-width:340px}
+.placeholder .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:rgba(12,11,11,.75);color:var(--champagne);font-size:11.5px;letter-spacing:.1em;padding:8px 14px;border-radius:2px;border:1px solid var(--line-dark);white-space:nowrap}
+
+.tuner{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:16px 18px;border-top:1px solid var(--line-dark)}
+.tuner label{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:7px}
+.tuner input[type=range]{width:100%;accent-color:var(--gilt-2)}
+.stage-actions{display:flex;gap:10px;padding:0 18px 18px;flex-wrap:wrap}
+
+/* ---- side rail ---- */
+.rail{display:flex;flex-direction:column;gap:22px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px}
+.panel h3{font-size:20px;margin-bottom:4px}
+.panel .sub{font-size:13px;color:var(--ink-soft);margin:0 0 16px}
+.wigs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wig{border:1px solid var(--line);border-radius:3px;background:var(--porcelain-2);cursor:pointer;overflow:hidden;text-align:left;padding:0;font-family:'Jost';transition:.25s}
+.wig:hover{border-color:var(--gilt)}
+.wig.on{border-color:var(--gilt-deep);box-shadow:0 0 0 1px var(--gilt-deep)}
+.wig .sw{height:78px;display:grid;place-items:center;background:var(--ink);overflow:hidden}
+.wig .sw img{height:100%;width:100%;object-fit:contain;padding:6px}
+.wig .lb{padding:9px 10px}
+.wig .lb b{display:block;font-family:'Bodoni Moda';font-weight:500;font-size:14px}
+.wig .lb span{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.wig .lb .tagreal{color:var(--gilt-deep)}
+
+#three{width:100%;aspect-ratio:1/1;background:var(--ink);border-radius:3px;cursor:grab;display:block}
+#three:active{cursor:grabbing}
+.swatches{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.swatch{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);cursor:pointer;padding:0}
+.swatch.on{box-shadow:0 0 0 2px var(--gilt-deep);border-color:transparent}
+.styles{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.styles button{border:1px solid var(--line);background:none;font-family:'Jost';font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border-radius:2px;cursor:pointer;color:var(--ink-soft)}
+.styles button.on{background:var(--ink);color:var(--porcelain);border-color:var(--ink)}
+
+.note{font-size:12.5px;color:var(--ink-faint);line-height:1.6;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.cta-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+
+footer{background:#0e0d0d;color:var(--champagne);padding:40px 0;margin-top:20px;font-size:13px}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+footer a{color:var(--gilt-3)}
+
+@media(max-width:960px){.studio{grid-template-columns:1fr}}
+@media(max-width:560px){
+  .wrap{padding:0 18px}.head{padding:36px 0 22px}
+  .tuner{grid-template-columns:1fr;gap:12px}
+  .brand .wordmark{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="crown" viewBox="0 0 64 44"><path d="M5 40 L11 15 L23 29 L32 6 L41 29 L53 15 L59 40 Z"/><rect x="7" y="40" width="50" height="4"/><circle cx="11" cy="13" r="3.4"/><circle cx="32" cy="4.5" r="3.8"/><circle cx="53" cy="13" r="3.4"/></symbol>
+</defs></svg>
+
+<div class="preview-bar" id="pv">
+  <span><b>Design preview</b> — try-on is a working demo. Fit is approximate; a consultation is still the real fitting.</span>
+  <button aria-label="Dismiss" onclick="this.parentElement.remove()">×</button>
+</div>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="index.html">
+      <span class="medallion"><img src="assets/logo.png" alt="AFRIKANADOLLZ"/></span>
+      <span class="wordmark">AFRIKANADOLLZ</span>
+    </a>
+    <a class="back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg>
+      Back to the shop
+    </a>
+  </div>
+</header>
+
+<div class="wrap head">
+  <div style="display:flex;align-items:center;justify-content:center;gap:10px"><svg class="crown"><use href="#crown"/></svg><span class="eyebrow">The Mirror</span></div>
+  <h1>Try it on <span class="mark">before</span> you book.</h1>
+  <p>Turn on your camera or upload a selfie, then switch between units. Nothing is uploaded anywhere — everything happens on your own device.</p>
+</div>
+
+<div class="wrap studio">
+  <!-- ============ STAGE ============ -->
+  <div class="stage">
+    <div class="stage-top">
+      <div class="modes">
+        <button id="mCam" class="on" onclick="setMode('cam')">Live camera</button>
+        <button id="mPhoto" onclick="setMode('photo')">Upload photo</button>
+      </div>
+      <span class="status" id="status">Camera off</span>
+    </div>
+
+    <div class="viewport">
+      <canvas id="view"></canvas>
+      <video id="cam" playsinline muted></video>
+      <img id="photo" alt=""/>
+      <div class="placeholder" id="ph">
+        <svg viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
+        <p id="phText">Turn on your camera to see the unit on you in real time.</p>
+        <div class="row">
+          <button class="btn btn-gold" id="startBtn" onclick="startCam()"><svg class="crown" style="fill:#20170a"><use href="#crown"/></svg>Start camera</button>
+          <button class="btn btn-ghost" onclick="document.getElementById('file').click()">Upload a photo</button>
+        </div>
+      </div>
+      <div class="hint" id="hint" style="display:none">Look straight ahead · good light helps</div>
+    </div>
+
+    <div class="tuner">
+      <div><label>Size</label><input type="range" id="tScale" min="0.7" max="1.6" step="0.01" value="1.06"></div>
+      <div><label>Up / down</label><input type="range" id="tY" min="-0.5" max="0.4" step="0.01" value="-0.06"></div>
+      <div><label>Forward / back</label><input type="range" id="tX" min="-0.3" max="0.3" step="0.01" value="0"></div>
+    </div>
+    <div class="stage-actions">
+      <button class="btn btn-gold" id="shotBtn" onclick="snap()" disabled><svg class="crown" style="fill:#20170a"><use href="#crown"/></svg>Save the look</button>
+      <button class="btn btn-ghost" onclick="stopCam()">Stop camera</button>
+      <button class="btn btn-ghost" onclick="resetTune()">Reset fit</button>
+    </div>
+    <input type="file" id="file" accept="image/*" style="display:none" onchange="loadPhoto(this)">
+  </div>
+
+  <!-- ============ RAIL ============ -->
+  <div class="rail">
+    <div class="panel">
+      <h3>Choose your unit</h3>
+      <p class="sub">Two are real units photographed in the studio. The rest preview in 3D.</p>
+      <div class="wigs" id="wigList"></div>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="https://app.acuityscheduling.com/schedule.php?owner=17570553" target="_blank" rel="noopener"><svg class="crown" style="fill:#20170a"><use href="#crown"/></svg>Book this look</a>
+        <a class="btn btn-outline" href="index.html#products">Shop units</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>See it in 3D</h3>
+      <p class="sub">Drag to turn the unit around. Change the color to see it in another shade.</p>
+      <canvas id="three"></canvas>
+      <div class="styles" id="styleRow"></div>
+      <div class="swatches" id="swatchRow"></div>
+      <div class="note">Colors shown are a guide. Lace tint, density and custom color are matched to you in the chair.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <span>AFRIKANA Beauty Studio LLC · 281 S 52nd St, Philadelphia PA 19139</span>
+    <span>Text <a href="sms:+12674814058">(267) 481-4058</a> · <a href="index.html">afrikanadollz.com</a></span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ========== catalogue ========== */
+const WIGS = [
+  {id:'straight', name:'Silk Straight 24"', meta:'HD Lace · Natural Black', real:true,  style:'long',  color:0x241a16},
+  {id:'blonde',   name:'Blonde 613 Bob',    meta:'Full Lace · Pre-toned',   real:true,  style:'bob',   color:0xe8c98d},
+  {id:'wave',     name:'Body Wave 22"',     meta:'5×5 Closure · 1B',        real:false, style:'wave',  color:0x2b1d18},
+  {id:'curl',     name:'Deep Curl Bob',     meta:'Glueless · Pre-plucked',  real:false, style:'curl',  color:0x33231c},
+];
+const COLORS = [
+  {n:'Natural Black', v:0x1d1512}, {n:'Dark Brown', v:0x3a2419},
+  {n:'Honey', v:0xa9702c}, {n:'613 Blonde', v:0xe8c98d}, {n:'Burgundy', v:0x5c1a24},
+];
+
+let current = WIGS[0];
+const params = new URLSearchParams(location.search);
+if (params.get('wig')) { const f = WIGS.find(w=>w.id===params.get('wig')); if (f) current = f; }
+
+/* ========== assets ========== */
+let META = {}, IMGS = {};
+fetch('assets/wig_meta.json').then(r=>r.json()).then(m=>{
+  META = m;
+  Object.keys(m).forEach(k=>{ const i=new Image(); i.src='assets/'+m[k].file; IMGS[k]=i; });
+}).catch(()=>{ setStatus('Could not load wig assets'); });
+
+/* ========== UI: wig list ========== */
+const wigList = document.getElementById('wigList');
+function renderWigs(){
+  wigList.innerHTML = WIGS.map(w=>`
+    <button class="wig ${w.id===current.id?'on':''}" onclick="pickWig('${w.id}')">
+      <span class="sw" style="background:${w.real?'#141313':'#1e1d1c'}">
+        ${w.real ? `<img src="assets/wig_${w.id}.png" alt="${w.name}">`
+                 : `<svg viewBox="0 0 40 40" width="52" height="52"><use href="#crown" x="0" y="0"/></svg>`}
+      </span>
+      <span class="lb"><b>${w.name}</b><span class="${w.real?'tagreal':''}">${w.real?'Live try-on':'3D preview'}</span></span>
+    </button>`).join('');
+}
+function pickWig(id){
+  current = WIGS.find(w=>w.id===id);
+  renderWigs(); buildHair(); render();
+  document.getElementById('hint').textContent = current.real
+    ? 'Look straight ahead · good light helps'
+    : 'This unit previews in 3D — drag the model to explore';
+}
+renderWigs();
+
+/* ========== stage ========== */
+const canvas = document.getElementById('view');
+const ctx = canvas.getContext('2d');
+const video = document.getElementById('cam');
+const photo = document.getElementById('photo');
+let mode='cam', camera=null, running=false, lastLm=null, srcEl=null;
+
+const tScale=document.getElementById('tScale'), tY=document.getElementById('tY'), tX=document.getElementById('tX');
+[tScale,tY,tX].forEach(el=>el.addEventListener('input',()=>{ if(mode==='photo') render(); }));
+function resetTune(){ tScale.value=1.06; tY.value=-0.06; tX.value=0; if(mode==='photo') render(); }
+function setStatus(t,live){ const s=document.getElementById('status'); s.textContent=t; s.classList.toggle('live',!!live); }
+function setMode(m){
+  mode=m;
+  document.getElementById('mCam').classList.toggle('on',m==='cam');
+  document.getElementById('mPhoto').classList.toggle('on',m==='photo');
+  document.getElementById('phText').textContent = m==='cam'
+    ? 'Turn on your camera to see the unit on you in real time.'
+    : 'Upload a clear, front-facing photo to try the unit on.';
+  document.getElementById('startBtn').style.display = m==='cam' ? '' : 'none';
+  if(m==='photo'){ stopCam(); showPlaceholder(true); }
+}
+function showPlaceholder(v){
+  document.getElementById('ph').style.display = v?'flex':'none';
+  document.getElementById('hint').style.display = v?'none':'';
+}
+
+/* ---- face mesh ---- */
+let faceMesh=null, meshReady=false;
+function initMesh(){
+  if(faceMesh) return faceMesh;
+  faceMesh = new FaceMesh({locateFile:f=>`https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${f}`});
+  faceMesh.setOptions({maxNumFaces:1, refineLandmarks:true, minDetectionConfidence:.5, minTrackingConfidence:.5});
+  faceMesh.onResults(onResults);
+  meshReady=true;
+  return faceMesh;
+}
+function onResults(res){
+  lastLm = (res.multiFaceLandmarks && res.multiFaceLandmarks[0]) || null;
+  render(res.image);
+}
+
+/* ---- camera ---- */
+async function startCam(){
+  try{
+    setStatus('Starting camera…');
+    initMesh();
+    const stream = await navigator.mediaDevices.getUserMedia({video:{width:960,height:720,facingMode:'user'},audio:false});
+    video.srcObject = stream; await video.play();
+    srcEl = video; running = true; showPlaceholder(false);
+    document.getElementById('shotBtn').disabled = false;
+    setStatus('Camera live', true);
+    camera = new Camera(video, {onFrame: async()=>{ if(running) await faceMesh.send({image:video}); }, width:960, height:720});
+    camera.start();
+  }catch(e){
+    setStatus('Camera blocked');
+    document.getElementById('phText').textContent =
+      'We could not open the camera. Check the browser permission, or upload a photo instead.';
+  }
+}
+function stopCam(){
+  running=false;
+  if(camera){ try{camera.stop();}catch(e){} camera=null; }
+  if(video.srcObject){ video.srcObject.getTracks().forEach(t=>t.stop()); video.srcObject=null; }
+  if(mode==='cam'){ setStatus('Camera off'); showPlaceholder(true); document.getElementById('shotBtn').disabled=true; }
+}
+
+/* ---- photo ---- */
+function loadPhoto(input){
+  const f=input.files && input.files[0]; if(!f) return;
+  setMode('photo');
+  const url=URL.createObjectURL(f);
+  photo.onload = async ()=>{
+    srcEl = photo; showPlaceholder(false);
+    document.getElementById('shotBtn').disabled=false;
+    setStatus('Detecting face…');
+    initMesh();
+    await faceMesh.send({image:photo});
+    setStatus(lastLm ? 'Photo loaded' : 'No face found — try a clearer photo', !!lastLm);
+    URL.revokeObjectURL(url);
+  };
+  photo.src=url;
+}
+
+/* ---- draw ---- */
+const MIRROR = ()=> mode==='cam';
+function render(imgOverride){
+  const src = imgOverride || srcEl;
+  if(!src) return;
+  const sw = src.videoWidth || src.naturalWidth || src.width;
+  const sh = src.videoHeight || src.naturalHeight || src.height;
+  if(!sw||!sh) return;
+  if(canvas.width!==sw||canvas.height!==sh){ canvas.width=sw; canvas.height=sh; }
+
+  ctx.save();
+  if(MIRROR()){ ctx.translate(sw,0); ctx.scale(-1,1); }
+  ctx.drawImage(src,0,0,sw,sh);
+  ctx.restore();
+
+  if(!lastLm || !current.real){ if(!current.real) badge('3D preview only — pick a live unit to try on'); return; }
+  const img = IMGS[current.id], m = META[current.id];
+  if(!img || !img.complete || !m) return;
+
+  // iris centres (refineLandmarks): 468 = right eye, 473 = left eye (image space)
+  const a = lastLm[468], b = lastLm[473];
+  if(!a || !b) return;
+  let ax=a.x*sw, ay=a.y*sh, bx=b.x*sw, by=b.y*sh;
+  if(MIRROR()){ ax=sw-ax; bx=sw-bx; }
+  // order left→right on screen so the angle is stable
+  let L={x:ax,y:ay}, R={x:bx,y:by};
+  if(L.x>R.x){ const t=L; L=R; R=t; }
+
+  const ipd = Math.hypot(R.x-L.x, R.y-L.y);
+  const ang = Math.atan2(R.y-L.y, R.x-L.x);
+  const scale = (ipd/m.interEye) * parseFloat(tScale.value);
+
+  const midX=(L.x+R.x)/2, midY=(L.y+R.y)/2;
+  const aMidX=(m.eyeL[0]+m.eyeR[0])/2, aMidY=(m.eyeL[1]+m.eyeR[1])/2;
+
+  ctx.save();
+  ctx.translate(midX + parseFloat(tX.value)*ipd, midY + parseFloat(tY.value)*ipd);
+  ctx.rotate(ang);
+  ctx.scale(scale,scale);
+  ctx.drawImage(img, -aMidX, -aMidY);
+  ctx.restore();
+}
+function badge(t){
+  ctx.save();
+  ctx.font='500 22px Jost, sans-serif'; const w=ctx.measureText(t).width+34;
+  ctx.fillStyle='rgba(12,11,11,.72)'; ctx.fillRect((canvas.width-w)/2, canvas.height-72, w, 42);
+  ctx.fillStyle='#ead9ae'; ctx.textAlign='center';
+  ctx.fillText(t, canvas.width/2, canvas.height-44);
+  ctx.restore();
+}
+function snap(){
+  const a=document.createElement('a');
+  a.download='afrikanadollz-tryon.png'; a.href=canvas.toDataURL('image/png'); a.click();
+}
+
+/* ========== 3D viewer ========== */
+const tc=document.getElementById('three');
+let scene,cam3,renderer,model,hairColor=current.color,styleId=current.style,
+    dragging=false,px=0,py=0,rotY=0,rotX=0,auto=true;
+
+function init3D(){
+  renderer=new THREE.WebGLRenderer({canvas:tc,antialias:true,alpha:true,preserveDrawingBuffer:true});
+  const size=tc.clientWidth||360;
+  renderer.setSize(size,size,false); renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  scene=new THREE.Scene();
+  cam3=new THREE.PerspectiveCamera(34,1,0.1,100);
+  scene.add(new THREE.AmbientLight(0xffffff,.48));
+  const key=new THREE.DirectionalLight(0xfff2d8,.92); key.position.set(2.5,3,4); scene.add(key);
+  const rim=new THREE.DirectionalLight(0xe7be63,.9); rim.position.set(-3,1.5,-2.5); scene.add(rim);
+  const fill=new THREE.DirectionalLight(0xffffff,.35); fill.position.set(-1.5,-2,3); scene.add(fill);
+  buildHair();
+  tc.addEventListener('pointerdown',e=>{dragging=true;auto=false;px=e.clientX;py=e.clientY;tc.setPointerCapture(e.pointerId);});
+  tc.addEventListener('pointermove',e=>{ if(!dragging)return;
+    rotY+=(e.clientX-px)*.01; rotX+=(e.clientY-py)*.005;
+    rotX=Math.max(-.5,Math.min(.5,rotX)); px=e.clientX; py=e.clientY; });
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>tc.addEventListener(ev,()=>dragging=false));
+  addEventListener('resize',()=>{const s2=tc.clientWidth||360; renderer.setSize(s2,s2,false);});
+  loop();
+}
+
+function buildHair(){
+  if(!scene) return;
+  if(model){ scene.remove(model); }
+  model=new THREE.Group();
+  styleId = current.style;
+  if(current.real) hairColor = current.color;
+
+  const mat=new THREE.MeshStandardMaterial({color:hairColor,roughness:.28,metalness:.26,side:THREE.DoubleSide});
+  const skin=new THREE.MeshStandardMaterial({color:0xbdae9b,roughness:.99,metalness:.0});
+
+  // ---- mannequin bust: one continuous lathe, like a wig stand ----
+  const bustProfile=[[.04,1.08],[.34,1.0],[.6,.78],[.76,.42],[.8,.05],[.76,-.32],
+                     [.63,-.66],[.44,-.92],[.32,-1.2],[.3,-1.62],[.42,-1.9],
+                     [.78,-2.06],[1.05,-2.16],[1.15,-2.3]]
+                     .map(q=>new THREE.Vector2(q[0],q[1]));
+  const bustPts=new THREE.SplineCurve(bustProfile).getPoints(60);
+  const bust=new THREE.Mesh(new THREE.LatheGeometry(bustPts,56),skin);
+  bust.scale.set(1.06,1,.94);
+  model.add(bust);
+
+  // ---- scalp cap ----
+  const cap=new THREE.Mesh(new THREE.SphereGeometry(1.06,56,36,0,Math.PI*2,0,Math.PI*0.52),mat);
+  cap.scale.set(.9,1.08,.96); cap.position.y=.04; model.add(cap);
+
+  // ---- length: lathe with the FACE WEDGE left open ----
+  const profiles={
+    long:[[.98,.55],[1.12,-.3],[1.17,-1.3],[1.14,-2.3],[1.02,-3.1],[.84,-3.5]],
+    bob: [[.98,.55],[1.16,-.2],[1.2,-.85],[1.12,-1.35],[.92,-1.6]],
+    wave:[[.98,.55],[1.2,-.3],[1.06,-.95],[1.24,-1.6],[1.06,-2.25],[1.2,-2.8],[.96,-3.2]],
+    curl:[[1.0,.5],[1.28,-.25],[1.16,-.75],[1.3,-1.25],[1.1,-1.7]]
+  };
+  const pts=(profiles[styleId]||profiles.long).map(p=>new THREE.Vector2(p[0],p[1]));
+  const dense=new THREE.SplineCurve(pts).getPoints(48);
+  const open=0.66;                       // half-angle of the face opening (phi=0 faces +Z)
+  const lathe=new THREE.Mesh(
+    new THREE.LatheGeometry(dense,80,open,Math.PI*2-open*2), mat);
+  lathe.scale.set(.95,1,.99);
+  model.add(lathe);
+
+  // ---- texture for curl / wave ----
+  if(styleId==='curl'||styleId==='wave'){
+    const n = styleId==='curl'?170:110;
+    const rr= styleId==='curl'?.16:.13;
+    const yMin = styleId==='curl'? -1.75 : -3.15;
+    for(let i=0;i<n;i++){
+      const th=Math.random()*Math.PI*2;
+      if(Math.abs(((th+Math.PI)%(Math.PI*2))-Math.PI) < open+0.15) continue; // keep face clear
+      const yy=.25+Math.random()*(yMin-.25);
+      const rad=1.02+Math.random()*.24;
+      const b=new THREE.Mesh(new THREE.SphereGeometry(rr*(.65+Math.random()*.75),10,10),mat);
+      b.position.set(Math.sin(th)*rad, yy, Math.cos(th)*rad*.95);
+      model.add(b);
+    }
+  }
+
+  scene.add(model);
+
+  // ---- centre the model and frame the camera to fit it ----
+  const box=new THREE.Box3().setFromObject(model);
+  const c=box.getCenter(new THREE.Vector3());
+  model.position.sub(c);                       // rotate about its own centre
+  const size=box.getSize(new THREE.Vector3());
+  const maxDim=Math.max(size.x,size.y,size.z);
+  const dist=(maxDim/2)/Math.tan(THREE.MathUtils.degToRad(cam3.fov/2))*1.22;
+  cam3.position.set(0,0,dist); cam3.lookAt(0,0,0);
+}
+
+function loop(){
+  requestAnimationFrame(loop);
+  if(!renderer||!model) return;
+  if(auto) rotY+=0.005;
+  model.rotation.y=rotY; model.rotation.x=rotX;
+  renderer.render(scene,cam3);
+}
+/* swatches + styles */
+document.getElementById('swatchRow').innerHTML = COLORS.map((c,i)=>
+  `<button class="swatch ${i===0?'on':''}" title="${c.n}" style="background:#${c.v.toString(16).padStart(6,'0')}" onclick="setColor(${c.v},this)"></button>`).join('');
+document.getElementById('styleRow').innerHTML = ['long','bob','wave','curl'].map(s=>
+  `<button class="${s===current.style?'on':''}" onclick="setStyle('${s}',this)">${({long:'Long straight',bob:'Bob',wave:'Body wave',curl:'Deep curl'})[s]}</button>`).join('');
+function setColor(v,el){ hairColor=v; current={...current,color:v,real:false}; document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('on')); el.classList.add('on'); buildHair(); }
+function setStyle(s,el){ document.querySelectorAll('#styleRow button').forEach(b=>b.classList.remove('on')); el.classList.add('on'); current={...current,style:s}; buildHair(); }
+
+if(window.THREE) init3D();
+setMode('cam');
+</script>
+</body>
+</html>

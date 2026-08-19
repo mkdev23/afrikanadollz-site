@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AFRIKANADOLLZ — West Philadelphia Hair Atelier</title>
+<meta name="description" content="Hand-crafted custom wigs, ready-to-ship units, bundles and braids from the AFRIKANADOLLZ atelier on 52nd Street, West Philadelphia. Wig maker & braid slayer. Appointment only."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,500;1,6..96,700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Direction C — Porcelain. Light-dominant; dark blocks are punctuation. */
+    --porcelain:#f6efe3; --porcelain-2:#efe5d3; --paper:#fffaf2;
+    --ink:#141313; --ink-2:#1e1d1c; --ink-3:#2a2827;
+    --ink-soft:#5c554c; --ink-faint:#8b8378;
+    --gilt:#c6972f; --gilt-deep:#8a681c; --gilt-2:#e7be63; --gilt-3:#f0d38f;
+    --champagne:#ead9ae; --honey:#f6d200;
+    --line:rgba(20,19,19,.14); --line-gold:rgba(198,151,47,.45); --line-dark:rgba(240,211,143,.20);
+    --shadow:0 24px 60px -28px rgba(20,19,19,.35);
+    --shadow-lift:0 30px 70px -30px rgba(20,19,19,.45);
+    --maxw:1240px;
+    --gold-foil:linear-gradient(135deg,#8a6a1e 0%,#c6972f 22%,#f0d38f 42%,#c6972f 55%,#9c7825 70%,#e7be63 88%,#b98c2c 100%);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--porcelain);color:var(--ink);
+    font-family:'Jost',system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  h1,h2,h3,h4{font-family:'Bodoni Moda',Georgia,serif;font-weight:700;margin:0;line-height:1.02}
+  ::selection{background:var(--honey);color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  .eyebrow{font-family:'Jost';font-weight:500;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gilt-deep)}
+  .serif-i{font-family:'Cormorant Garamond';font-style:italic;font-weight:500}
+  /* honey highlighter — the signature */
+  .mark{position:relative;white-space:nowrap;color:var(--ink);z-index:0}
+  .mark::before{content:"";position:absolute;left:-.12em;right:-.14em;top:16%;bottom:9%;
+    background:var(--honey);transform:rotate(-1.6deg) skewX(-4deg);
+    border-radius:46% 54% 60% 40%/62% 44% 56% 38%;z-index:-1}
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-family:'Jost';font-weight:500;
+    font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;padding:15px 26px;border-radius:2px;
+    cursor:pointer;border:1px solid transparent;transition:transform .25s,background .25s,color .25s,border-color .25s;background:none;color:inherit}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-gold{background:var(--gold-foil);color:#20170a;font-weight:600;box-shadow:0 12px 28px -14px rgba(138,104,28,.55)}
+  .btn-outline{border-color:rgba(20,19,19,.28);color:var(--ink)}
+  .btn-outline:hover{border-color:var(--ink);background:var(--ink);color:var(--porcelain)}
+  .btn-ink{background:var(--ink);color:var(--porcelain)}
+  .btn-ink:hover{background:#000}
+  .crown{width:1em;height:.78em;fill:var(--gilt-deep);flex:none}
+  :focus-visible{outline:2px solid var(--gilt-deep);outline-offset:3px}
+
+  /* dark blocks — punctuation against the porcelain */
+  .dark{background:var(--ink);color:var(--porcelain)}
+  .dark .eyebrow{color:var(--gilt-2)}
+  .dark .crown{fill:var(--gilt-2)}
+  .dark h1,.dark h2,.dark h3,.dark h4{color:var(--porcelain)}
+  .dark p{color:var(--champagne)}
+  .dark .btn-outline{border-color:var(--line-dark);color:var(--champagne)}
+  .dark .btn-outline:hover{background:var(--porcelain);color:var(--ink);border-color:var(--porcelain)}
+
+  /* ===== preview banner (meta-notice, not part of the design) ===== */
+  .preview-bar{background:var(--honey);color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px;padding:9px 40px;font-size:12px;letter-spacing:.02em;text-align:center;position:relative;z-index:70;font-family:'Jost'}
+  .preview-bar b{font-weight:600}
+  .preview-bar button{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--ink);font-size:18px;cursor:pointer;line-height:1;padding:4px}
+  @media(max-width:560px){.preview-bar{font-size:10.5px;padding:8px 34px 8px 14px;text-align:left}}
+
+  /* ===== promo marquee (dark strip) ===== */
+  .promo{background:var(--ink);border-bottom:1px solid rgba(198,151,47,.3);overflow:hidden;height:38px;display:flex;align-items:center}
+  .promo .track{display:flex;gap:0;white-space:nowrap;animation:slide 34s linear infinite}
+  .promo span{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gilt-2);padding:0 26px;font-weight:400}
+  .promo b{color:var(--porcelain);font-weight:600}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ===== header ===== */
+  header{position:sticky;top:0;z-index:60;background:rgba(246,239,227,.88);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);transition:padding .3s}
+  .nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px 32px;transition:padding .3s;max-width:1360px;margin:0 auto}
+  header.shrink .nav{padding:10px 32px}
+  .nav-left,.nav-right{display:flex;align-items:center;gap:26px}
+  .nav-right{justify-content:flex-end;gap:20px}
+  .navlink{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;color:var(--ink);position:relative;padding:4px 0}
+  .navlink::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gilt-deep);transition:width .3s}
+  .navlink:hover::after{width:100%}
+  .brand{display:flex;flex-direction:column;align-items:center;gap:2px;justify-self:center}
+  .brand .medallion{width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;
+    box-shadow:0 0 0 1px var(--gilt),0 0 0 5px rgba(198,151,47,.16);transition:width .3s,height .3s}
+  header.shrink .brand .medallion{width:40px;height:40px}
+  .brand .medallion img{width:80%}
+  .brand .wordmark{font-family:'Bodoni Moda';font-weight:700;font-size:14px;letter-spacing:.42em;text-indent:.42em;color:var(--ink);margin-top:1px}
+  header.shrink .brand .wordmark{display:none}
+  .icons{display:flex;align-items:center;gap:16px}
+  .iconbtn{background:none;border:none;color:var(--ink);cursor:pointer;position:relative;display:grid;place-items:center;padding:4px}
+  .iconbtn:hover{color:var(--gilt-deep)}
+  .iconbtn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.4}
+  .badge{position:absolute;top:-6px;right:-8px;min-width:16px;height:16px;padding:0 4px;border-radius:9px;
+    background:var(--ink);color:var(--porcelain);font-size:10px;font-weight:600;display:grid;place-items:center;font-family:'Jost'}
+  .cur{display:flex;align-items:center;gap:6px;font-size:12px;letter-spacing:.1em;color:var(--ink);cursor:pointer;border:1px solid var(--line);border-radius:2px;padding:6px 9px;background:none}
+  .cur select{background:var(--porcelain);color:var(--ink);border:none;font-family:'Jost';font-size:12px;letter-spacing:.08em;cursor:pointer}
+  .hamburger{display:none}
+
+  /* ===== hero ===== */
+  .hero{position:relative;padding:78px 0 70px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:1}
+  .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+  .hero-eyebrow .rule{height:1px;width:56px;background:var(--gilt-deep)}
+  .hero h1{font-size:clamp(46px,6.4vw,90px);letter-spacing:-.01em;color:var(--ink)}
+  .hero h1 .l{display:block;overflow:hidden}
+  .hero h1 .l>span{display:block;transform:translateY(105%);animation:rise .95s cubic-bezier(.19,1,.22,1) forwards}
+  .hero h1 .l:nth-child(2)>span{animation-delay:.12s}
+  .hero h1 .l:nth-child(3)>span{animation-delay:.24s}
+  @keyframes rise{to{transform:translateY(0)}}
+  .hero h1 em{font-family:'Bodoni Moda';font-style:italic;font-weight:500}
+  .hero-sub{max-width:440px;margin:30px 0 34px;color:var(--ink-soft);font-size:17px;line-height:1.7;opacity:0;animation:fade 1s ease .5s forwards}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fade 1s ease .68s forwards}
+  .hero-trust{margin-top:26px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);opacity:0;animation:fade 1s ease .85s forwards}
+  .hero-trust span{color:var(--gilt-deep)}
+  @keyframes fade{to{opacity:1}}
+  /* cover frame */
+  .cover{position:relative;justify-self:center;width:min(430px,100%)}
+  .cover .frame{position:relative;border:1px solid var(--line-gold);padding:14px;background:var(--paper);box-shadow:var(--shadow)}
+  .cover .shot{position:relative;overflow:hidden;aspect-ratio:900/1160}
+  .cover .shot img{width:100%;height:100%;object-fit:cover;object-position:center top;
+    clip-path:inset(0 0 100% 0);animation:reveal 1.1s cubic-bezier(.19,1,.22,1) .35s forwards}
+  @keyframes reveal{to{clip-path:inset(0 0 0 0)}}
+  .cover .spine{position:absolute;left:-46px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;
+    font-size:10.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--gilt-deep)}
+  .cover .issue{position:absolute;top:24px;left:24px;font-family:'Bodoni Moda';font-style:italic;font-size:15px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.55);z-index:2}
+  .cover .pricetag{position:absolute;right:-14px;bottom:52px;background:var(--ink);color:var(--porcelain);
+    padding:12px 16px;text-align:center;box-shadow:var(--shadow-lift);opacity:0;animation:fade .8s ease 1s forwards}
+  .cover .pricetag small{display:block;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gilt-2)}
+  .cover .pricetag b{font-family:'Bodoni Moda';font-size:22px;font-weight:700;color:var(--porcelain)}
+  .seal{position:absolute;left:-30px;bottom:-30px;width:112px;height:112px;animation:spin 26s linear infinite}
+  .seal svg{width:100%;height:100%}
+  .seal .center{position:absolute;inset:0;display:grid;place-items:center}
+  .seal .center svg{width:34px;height:34px;fill:var(--gilt-deep)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ===== service marquee ===== */
+  .svc{background:var(--gold-foil);color:#20170a;overflow:hidden;padding:14px 0;border-top:1px solid rgba(0,0,0,.15);border-bottom:1px solid rgba(0,0,0,.15)}
+  .svc .track{display:flex;white-space:nowrap;animation:slide 28s linear infinite;gap:0}
+  .svc span{font-family:'Bodoni Moda';font-weight:700;font-size:22px;letter-spacing:.02em;padding:0 30px;display:flex;align-items:center;gap:30px}
+  .svc .star{width:12px;height:12px;fill:#20170a}
+
+  /* ===== section shell ===== */
+  section{position:relative}
+  .band{padding:104px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px}
+  .sec-head h2{font-size:clamp(34px,4.4vw,58px)}
+  .kicker{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .sec-head .kicker{margin-bottom:14px}
+  .sec-head p{max-width:360px;color:var(--ink-soft);margin:0}
+  .dark .sec-head p{color:var(--champagne)}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.19,1,.22,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ===== collections ===== */
+  .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .col{position:relative;overflow:hidden;background:var(--porcelain-2);aspect-ratio:3/4.1;display:block;border:1px solid var(--line)}
+  .col img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.19,1,.22,1)}
+  .col:hover img{transform:scale(1.07)}
+  .col .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,12,10,.9) 6%,rgba(14,12,10,.2) 48%,transparent 72%)}
+  .col .body{position:absolute;left:0;right:0;bottom:0;padding:24px 22px}
+  .col .num{font-family:'Bodoni Moda';font-style:italic;font-size:13px;color:var(--gilt-3)}
+  .col h3{font-size:26px;margin:6px 0 4px;color:#fff}
+  .col .from{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--champagne)}
+  .col .go{position:absolute;top:18px;right:18px;width:38px;height:38px;border:1px solid rgba(255,255,255,.4);border-radius:50%;
+    display:grid;place-items:center;color:#fff;opacity:0;transform:translateY(-6px);transition:.35s;background:rgba(20,19,19,.35)}
+  .col:hover .go{opacity:1;transform:none}
+  .col.type{display:flex;flex-direction:column;justify-content:space-between;padding:26px 22px;background:var(--gold-foil);color:#20170a;border:none}
+  .col.type h3{color:#20170a}
+  .col.type .num{color:#3a2c10}
+  .col.type .from{color:#3a2c10}
+  .col.type .big{font-family:'Bodoni Moda';font-weight:900;font-size:60px;line-height:.9;letter-spacing:-.02em}
+
+  /* ===== product grid ===== */
+  .prods{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .card{background:var(--paper);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;
+    transition:transform .4s,box-shadow .4s,border-color .4s}
+  .card:hover{transform:translateY(-6px);border-color:var(--line-gold);box-shadow:var(--shadow)}
+  .card .pic{position:relative;aspect-ratio:1/1.12;overflow:hidden;background:var(--porcelain-2)}
+  .card .pic img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .8s}
+  .card:hover .pic img{transform:scale(1.06)}
+  .card .tag{position:absolute;top:12px;left:12px;background:var(--ink);
+    color:var(--gilt-3);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:5px 9px;z-index:2}
+  .card .wish{position:absolute;top:10px;right:10px;background:rgba(255,250,242,.85);border:1px solid var(--line);
+    color:var(--ink);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;z-index:2}
+  .card .wish svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5}
+  .card .wish.on svg{fill:var(--honey);stroke:var(--gilt-deep)}
+  .card .info{padding:16px 16px 18px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .card .info .meta{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .card .info h4{font-family:'Bodoni Moda';font-weight:500;font-size:19px;color:var(--ink)}
+  .card .price{font-family:'Bodoni Moda';font-size:19px;color:var(--gilt-deep);margin-top:2px}
+  .card .add{margin-top:12px;width:100%;justify-content:center}
+  .tryon-link{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:8px;
+    font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gilt-deep);
+    padding:9px 0;border:1px dashed rgba(138,104,28,.45);border-radius:2px;transition:.25s}
+  .tryon-link:hover{background:var(--gilt-deep);color:var(--paper);border-style:solid}
+
+  /* ===== atelier / process ===== */
+  .atelier{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .atelier .shot{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--line-dark)}
+  .atelier .shot img{width:100%;height:100%;object-fit:cover}
+  .atelier .shot .cap{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,rgba(14,12,10,.88),transparent);
+    font-family:'Cormorant Garamond';font-style:italic;font-size:20px;color:#fff}
+  .steps{list-style:none;margin:26px 0 30px;padding:0;display:flex;flex-direction:column;gap:0}
+  .steps li{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+  .steps li:last-child{border-bottom:1px solid var(--line)}
+  .steps .n{font-family:'Bodoni Moda';font-style:italic;font-size:26px;color:var(--gilt-deep);line-height:1}
+  .steps h4{font-family:'Bodoni Moda';font-weight:500;font-size:20px;color:var(--ink);margin-bottom:4px}
+  .steps p{margin:0;color:var(--ink-soft);font-size:14.5px;line-height:1.6}
+  .dark .steps li{border-color:var(--line-dark)}
+  .dark .steps .n{color:var(--gilt-2)}
+  .dark .steps h4{color:var(--porcelain)}
+  .dark .steps p{color:var(--champagne)}
+
+  /* ===== story ===== */
+  .story{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+  .story .visual{position:relative}
+  .story .visual img{width:100%;aspect-ratio:1150/767;object-fit:cover;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .story .bigseal{position:absolute;right:-34px;top:-34px;width:118px;height:118px;background:#fff;border-radius:50%;
+    display:grid;place-items:center;box-shadow:0 0 0 1px var(--gilt),0 0 0 8px rgba(198,151,47,.14),var(--shadow)}
+  .story .bigseal img{width:76%;border:none;aspect-ratio:auto;box-shadow:none}
+  .story h2{font-size:clamp(32px,4vw,52px);margin-bottom:8px;color:var(--ink)}
+  .story h2 em{font-family:'Cormorant Garamond';font-style:italic;font-weight:500}
+  .story p{color:var(--ink-soft);margin:18px 0}
+  .story .signoff{font-family:'Cormorant Garamond';font-style:italic;font-size:22px;color:var(--ink)}
+  .story .stat-row{display:flex;gap:40px;margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+  .story .stat b{font-family:'Bodoni Moda';font-size:34px;display:block;color:var(--ink)}
+  .story .stat span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ===== booking ===== */
+  .booking{background:var(--ink);border:1px solid var(--ink);border-radius:3px;overflow:hidden;
+    display:grid;grid-template-columns:1.05fr .95fr;box-shadow:var(--shadow-lift)}
+  .booking .info{padding:52px 48px}
+  .booking .info h2{font-size:clamp(32px,4vw,50px);margin-bottom:16px;color:var(--porcelain)}
+  .booking .info p{color:var(--champagne)}
+  .booking .info .eyebrow{color:var(--gilt-2)}
+  .booking .info .crown{fill:var(--gilt-2)}
+  .booking .info .line{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line-dark);color:var(--champagne)}
+  .booking .info .line:first-of-type{border-top:none}
+  .booking .info .line svg{width:19px;height:19px;stroke:var(--gilt-2);fill:none;stroke-width:1.4;flex:none}
+  .booking .info .line b{color:var(--porcelain);font-weight:500}
+  .booking .info .btn-outline{border-color:var(--line-dark);color:var(--champagne)}
+  .booking .info .btn-outline:hover{background:var(--porcelain);color:var(--ink);border-color:var(--porcelain)}
+  .booking .form{background:var(--gold-foil);color:#20170a;padding:48px 44px}
+  .booking .form h3{font-family:'Bodoni Moda';font-size:24px;margin-bottom:6px;color:#20170a}
+  .booking .form p{font-size:13px;color:#3a2c10;margin:0 0 22px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;color:#3a2c10;font-weight:500}
+  .field input,.field select{width:100%;padding:13px 14px;border:1px solid rgba(32,23,10,.35);background:rgba(255,255,255,.62);
+    color:#20170a;font-family:'Jost';font-size:14px;border-radius:2px}
+  .field input::placeholder{color:#6a5423}
+  .booking .form .btn-ink{width:100%;justify-content:center;margin-top:6px}
+
+  /* ===== testimonials ===== */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .quote{border:1px solid var(--line);padding:30px 26px;background:var(--paper);display:flex;flex-direction:column;gap:14px}
+  .quote .stars{color:var(--gilt-deep);letter-spacing:4px;font-size:14px}
+  .quote p{font-family:'Cormorant Garamond';font-size:21px;line-height:1.5;color:var(--ink);margin:0}
+  .quote .who{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-top:auto}
+
+  /* ===== newsletter (dark block) ===== */
+  .doll{position:relative;text-align:center;padding:110px 0;overflow:hidden;background:var(--ink);color:var(--porcelain)}
+  .doll .inner{position:relative;max-width:640px;margin:0 auto}
+  .doll .eyebrow{color:var(--gilt-2)}
+  .doll .crown{fill:var(--gilt-2)}
+  .doll h2{font-size:clamp(40px,6vw,74px);line-height:.98;color:var(--porcelain)}
+  .doll p{color:var(--champagne);margin:16px 0 30px}
+  .signup{display:flex;gap:10px;max-width:460px;margin:0 auto}
+  .signup input{flex:1;padding:15px 18px;background:transparent;border:1px solid var(--line-dark);color:var(--porcelain);font-family:'Jost';font-size:14px;border-radius:2px}
+  .signup input::placeholder{color:#8b8378}
+
+  /* ===== footer ===== */
+  footer{background:#0e0d0d;color:var(--porcelain);border-top:1px solid rgba(198,151,47,.28);padding:64px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:40px;padding-bottom:44px;border-bottom:1px solid var(--line-dark)}
+  .foot-brand .medallion{width:64px;height:64px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 1px var(--gilt),0 0 0 6px rgba(198,151,47,.12);margin-bottom:16px}
+  .foot-brand .medallion img{width:80%}
+  .foot-brand p{color:#8b8378;font-size:14px;max-width:260px}
+  footer h5{font-family:'Jost';font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gilt-2);margin:0 0 18px}
+  footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px}
+  footer ul a{color:var(--champagne);font-size:14px}
+  footer ul a:hover{color:var(--gilt-3)}
+  .foot-visit p{color:var(--champagne);font-size:14px;line-height:1.7;margin:0 0 14px}
+  .foot-visit a{color:var(--gilt-3)}
+  .pay{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .pay span{border:1px solid var(--line-dark);border-radius:3px;padding:5px 8px;font-size:9.5px;letter-spacing:.1em;color:var(--champagne);background:var(--ink-2)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;gap:16px;flex-wrap:wrap}
+  .foot-bottom small{color:#8b8378;font-size:12px;letter-spacing:.04em}
+  .social{display:flex;gap:12px}
+  .social a{width:38px;height:38px;border:1px solid var(--line-dark);border-radius:50%;display:grid;place-items:center;color:var(--champagne)}
+  .social a:hover{color:var(--gilt-3);border-color:var(--gilt)}
+  .social svg{width:17px;height:17px}
+
+  /* ===== overlays ===== */
+  .scrim{position:fixed;inset:0;background:rgba(20,19,19,.45);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:.35s;z-index:80}
+  .scrim.on{opacity:1;visibility:visible}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--porcelain);border-left:1px solid var(--line);
+    z-index:90;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:var(--shadow-lift)}
+  .drawer.on{transform:none}
+  .drawer .dh{display:flex;align-items:center;justify-content:space-between;padding:24px;border-bottom:1px solid var(--line)}
+  .drawer .dh h3{font-family:'Bodoni Moda';font-size:22px;color:var(--ink)}
+  .drawer .close{background:none;border:none;color:var(--ink);cursor:pointer;font-size:24px;line-height:1}
+  .cart-items{flex:1;overflow-y:auto;padding:8px 24px}
+  .citem{display:grid;grid-template-columns:64px 1fr auto;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);align-items:center}
+  .citem img{width:64px;height:76px;object-fit:cover;border:1px solid var(--line)}
+  .citem .t{font-family:'Bodoni Moda';font-size:15px;color:var(--ink)}
+  .citem .m{font-size:11px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase}
+  .qty{display:inline-flex;align-items:center;gap:10px;margin-top:8px;border:1px solid var(--line);border-radius:2px;padding:3px 8px}
+  .qty button{background:none;border:none;color:var(--ink);cursor:pointer;font-size:15px;line-height:1}
+  .qty span{font-size:13px;min-width:14px;text-align:center}
+  .citem .p{font-family:'Bodoni Moda';color:var(--gilt-deep);font-size:15px}
+  .citem .rm{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);background:none;border:none;cursor:pointer;margin-top:6px;text-align:right;width:100%}
+  .cart-empty{padding:60px 24px;text-align:center;color:var(--ink-soft)}
+  .cart-empty .crown{width:40px;height:32px;margin:0 auto 14px;display:block}
+  .cart-foot{padding:22px 24px;border-top:1px solid var(--line);background:var(--porcelain-2)}
+  .cart-foot .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .cart-foot .row .s{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+  .cart-foot .row .v{font-family:'Bodoni Moda';font-size:26px;color:var(--ink)}
+  .cart-foot small{color:var(--ink-faint);font-size:11px}
+  .cart-foot .btn-gold{width:100%;justify-content:center;margin-top:14px}
+
+  .search-panel{position:fixed;top:0;left:0;right:0;background:var(--porcelain);border-bottom:1px solid var(--line);z-index:90;
+    transform:translateY(-100%);transition:transform .4s;padding:34px 0;box-shadow:var(--shadow)}
+  .search-panel.on{transform:none}
+  .search-panel .wrap{display:flex;flex-direction:column;gap:18px}
+  .search-row{display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--gilt-deep);padding-bottom:14px}
+  .search-row input{flex:1;background:none;border:none;color:var(--ink);font-family:'Bodoni Moda';font-size:28px;outline:none}
+  .search-row input::placeholder{color:var(--ink-faint)}
+  .search-row .close{background:none;border:none;color:var(--ink);cursor:pointer;font-size:24px}
+  .search-sugg{display:flex;gap:10px;flex-wrap:wrap}
+  .search-sugg a{border:1px solid var(--line);padding:8px 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .search-sugg a:hover{border-color:var(--gilt-deep);color:var(--ink)}
+
+  .mobile-nav{position:fixed;inset:0;background:var(--porcelain);z-index:95;transform:translateX(-100%);transition:transform .4s;
+    display:flex;flex-direction:column;padding:28px 32px}
+  .mobile-nav.on{transform:none}
+  .mobile-nav .mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+  .mobile-nav .mh .wordmark{color:var(--ink)}
+  .mobile-nav .close{background:none;border:none;color:var(--ink);cursor:pointer;font-size:26px}
+  .mobile-nav a{font-family:'Bodoni Moda';font-size:30px;padding:14px 0;border-bottom:1px solid var(--line);color:var(--ink)}
+  .mobile-nav .mmeta{margin-top:auto;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gilt-deep)}
+
+  .toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(24px);background:var(--ink);color:var(--porcelain);
+    padding:14px 24px;border-radius:3px;font-size:13px;letter-spacing:.06em;box-shadow:var(--shadow-lift);opacity:0;visibility:hidden;transition:.4s;z-index:120;display:flex;gap:10px;align-items:center}
+  .toast.on{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .toast .crown{width:18px;height:15px;fill:var(--gilt-2)}
+
+  /* ===== responsive ===== */
+  @media(max-width:1080px){
+    .cols{grid-template-columns:repeat(2,1fr)}
+    .prods{grid-template-columns:repeat(2,1fr)}
+    .quotes{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+  }
+  @media(max-width:860px){
+    .nav-left{display:none}
+    .hamburger{display:grid}
+    .nav{grid-template-columns:auto 1fr auto}
+    .brand{justify-self:start}
+    .hero-grid{grid-template-columns:1fr;gap:44px}
+    .cover{order:-1;width:min(360px,86%)}
+    .atelier,.story,.booking{grid-template-columns:1fr}
+    .booking .form{order:-1}
+    .seal{width:88px;height:88px}
+    .cover .spine{display:none}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 20px}
+    .band{padding:72px 0}
+    .cols{grid-template-columns:1fr}
+    .prods{grid-template-columns:1fr 1fr;gap:14px}
+    .sec-head{flex-direction:column;align-items:flex-start}
+    .story .stat-row{gap:22px}
+    .cur{display:none}
+    .brand .wordmark{display:none}
+    .icons{gap:15px}
+    .nav-right{gap:12px}
+    .foot-grid{grid-template-columns:1fr}
+    .hero h1{font-size:clamp(40px,12vw,60px)}
+    .svc span{font-size:17px}
+    .story .bigseal{width:86px;height:86px;right:-12px;top:-22px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .hero h1 .l>span{transform:none}
+    .cover .shot img{clip-path:none}
+    .hero-sub,.hero-cta,.hero-trust,.cover .pricetag{opacity:1}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-bar" id="previewBar">
+  <span><b>Design preview</b> — not the live store. Cart, currency &amp; search are interactive demos; “Book online” opens the real scheduler.</span>
+  <button aria-label="Dismiss preview notice" onclick="this.parentElement.remove()">×</button>
+</div>
+
+<!-- crown symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="crown" viewBox="0 0 64 44">
+    <path d="M5 40 L5 40 L11 15 L23 29 L32 6 L41 29 L53 15 L59 40 Z"/>
+    <rect x="7" y="40" width="50" height="4"/>
+    <circle cx="11" cy="13" r="3.4"/><circle cx="32" cy="4.5" r="3.8"/><circle cx="53" cy="13" r="3.4"/>
+  </symbol>
+</defs></svg>
+
+<!-- PROMO -->
+<div class="promo" role="region" aria-label="Announcements">
+  <div class="track" id="promoTrack"></div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="nav">
+    <button class="iconbtn hamburger" aria-label="Open menu" onclick="openM()">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="nav-left" aria-label="Primary">
+      <a class="navlink" href="#collections">Shop</a>
+      <a class="navlink" href="#atelier">Custom Wigs</a>
+      <a class="navlink" href="tryon.html">Try-On</a>
+      <a class="navlink" href="#booking">Book</a>
+      <a class="navlink" href="#story">Story</a>
+    </nav>
+    <a class="brand" href="#top" aria-label="AFRIKANADOLLZ home">
+      <span class="medallion"><img src="assets/logo.png" alt="AFRIKANADOLLZ crest"/></span>
+      <span class="wordmark">AFRIKANADOLLZ</span>
+    </a>
+    <div class="nav-right">
+      <div class="icons">
+        <button class="iconbtn" aria-label="Search" onclick="toggleSearch()">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <button class="iconbtn" aria-label="Account">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </button>
+        <button class="iconbtn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-9.2-9C1.3 8 3 4.7 6.2 4.7c2 0 3.2 1.2 3.8 2.3.6-1.1 1.8-2.3 3.8-2.3 3.2 0 4.9 3.3 3.4 6.3C19 15.4 12 20 12 20z"/></svg>
+          <span class="badge" id="wishBadge" style="display:none">0</span>
+        </button>
+        <button class="iconbtn" aria-label="Cart" onclick="openCart()">
+          <svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg>
+          <span class="badge" id="cartBadge" style="display:none">0</span>
+        </button>
+      </div>
+      <label class="cur" aria-label="Currency">
+        <select id="cur" onchange="setCur(this.value)">
+          <option value="USD">$ USD</option><option value="GBP">£ GBP</option>
+          <option value="CAD">CA$ CAD</option><option value="AUD">A$ AUD</option>
+          <option value="EUR">€ EUR</option><option value="JPY">¥ JPY</option><option value="INR">₹ INR</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow"><span class="rule"></span><span class="eyebrow">West Philadelphia · Hair Atelier</span></div>
+      <h1>
+        <span class="l"><span>Your crown,</span></span>
+        <span class="l"><span><em>made</em> by hand.</span></span>
+        <span class="l"><span>Worn like <mark class="mark">a doll.</mark></span></span>
+      </h1>
+      <p class="hero-sub">Hand-built custom units, ready-to-ship wigs, luxury bundles and braids — crafted strand by strand on 52nd Street. Wig maker and braid slayer, by appointment.</p>
+      <div class="hero-cta">
+        <a href="#products" class="btn btn-gold"><svg class="crown"><use href="#crown"/></svg>Shop ready-to-ship</a>
+        <a href="#booking" class="btn btn-outline">Book an appointment</a>
+      </div>
+      <div class="hero-trust">Installs &amp; custom color · <span>Appointment only</span> · Text (267) 481-4058</div>
+    </div>
+
+    <div class="cover">
+      <span class="spine">AFRIKANADOLLZ — The Doll House Nº 01</span>
+      <div class="frame">
+        <div class="shot">
+          <span class="issue">The Doll House</span>
+          <img src="assets/hero.jpg" alt="Model wearing a hand-crafted straight AFRIKANADOLLZ unit"/>
+        </div>
+      </div>
+      <div class="pricetag"><small>Custom units from</small><b data-usd="650">$650</b></div>
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <defs><path id="cp" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+          <circle cx="60" cy="60" r="58" fill="none" stroke="#8a681c" stroke-width="1.2"/>
+          <circle cx="60" cy="60" r="47" fill="none" stroke="#8a681c" stroke-width="1.2"/>
+          <text fill="#8a681c" font-family="Jost" font-size="9.4" letter-spacing="4.1">
+            <textPath href="#cp" startOffset="0">· CRAFTED BY HAND · APPOINTMENT ONLY </textPath>
+          </text>
+        </svg>
+        <span class="center"><svg viewBox="0 0 64 44"><use href="#crown"/></svg></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE MARQUEE -->
+<div class="svc" aria-hidden="true"><div class="track" id="svcTrack"></div></div>
+
+<!-- COLLECTIONS -->
+<section class="band" id="collections">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="kicker"><svg class="crown"><use href="#crown"/></svg><span class="eyebrow">The Collections</span></div>
+        <h2>Shop the doll house</h2>
+      </div>
+      <p>Every unit is inspected, styled and slayed before it ships. Find your texture below.</p>
+    </div>
+    <div class="cols reveal">
+      <a class="col" href="#products">
+        <img src="assets/hero.jpg" alt="Ready to ship straight wig"/>
+        <div class="grad"></div>
+        <div class="go"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></div>
+        <div class="body"><span class="num">Nº 01</span><h3>Ready-to-Ship Wigs</h3><span class="from">From <span data-usd="180">$180</span></span></div>
+      </a>
+      <a class="col type" href="#atelier">
+        <div><span class="num">Nº 02</span><div class="big">Custom<br>Wigs</div></div>
+        <div><p style="font-size:13px;margin:0 0 10px">Bespoke units, measured and built to your head. Designed with you.</p><span class="from">From <span data-usd="650">$650</span></span></div>
+      </a>
+      <a class="col" href="#products">
+        <img src="assets/dolls.jpg" alt="Bundles and closures collection"/>
+        <div class="grad"></div>
+        <div class="go"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></div>
+        <div class="body"><span class="num">Nº 03</span><h3>Bundles &amp; Closures</h3><span class="from">From <span data-usd="75">$75</span></span></div>
+      </a>
+      <a class="col" href="#products">
+        <img src="assets/blonde.jpg" alt="American Blues collection"/>
+        <div class="grad"></div>
+        <div class="go"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></div>
+        <div class="body"><span class="num">Nº 04</span><h3>American Blues</h3><span class="from">From <span data-usd="210">$210</span></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="band" id="products" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="kicker"><svg class="crown"><use href="#crown"/></svg><span class="eyebrow">Ready to ship</span></div>
+        <h2>Slay tonight</h2>
+      </div>
+      <p>In stock, styled, and ready to install. Add to cart and check out in minutes.</p>
+    </div>
+    <div class="prods reveal" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- ATELIER -->
+<section class="band dark" id="atelier">
+  <div class="wrap atelier">
+    <div class="shot reveal">
+      <img src="assets/curly.jpg" alt="Custom wig detail — hand-styled curls"/>
+      <div class="cap">Hand-ventilated. Custom-colored. Built for your crown.</div>
+    </div>
+    <div class="reveal">
+      <div class="kicker"><svg class="crown"><use href="#crown"/></svg><span class="eyebrow">The Atelier</span></div>
+      <h2 style="font-size:clamp(32px,4vw,52px)">A custom wig,<br>made only for you</h2>
+      <p style="max-width:460px">No two heads are the same, so no two units are either. Book a consultation and we build yours by hand — from lace tint to density to the way it lays.</p>
+      <ol class="steps">
+        <li><span class="n">01</span><div><h4>Consultation</h4><p>We talk texture, length, color and lifestyle — in the chair or over the phone.</p></div></li>
+        <li><span class="n">02</span><div><h4>Design</h4><p>Cap size, density, lace and parting mapped to your measurements.</p></div></li>
+        <li><span class="n">03</span><div><h4>Hand-craft</h4><p>Wefts, closures and baby hairs built and bleached by hand in the studio.</p></div></li>
+        <li><span class="n">04</span><div><h4>The reveal</h4><p>Install, style and a final slay before you walk out crowned.</p></div></li>
+      </ol>
+      <a href="#booking" class="btn btn-gold"><svg class="crown"><use href="#crown"/></svg>Start your custom wig</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE MARQUEE 2 -->
+<div class="svc" aria-hidden="true"><div class="track" id="svcTrack2"></div></div>
+
+<!-- STORY -->
+<section class="band" id="story" style="padding-top:104px">
+  <div class="wrap story">
+    <div class="visual reveal">
+      <img src="assets/squad.jpg" alt="The AFRIKANADOLLZ dolls"/>
+      <div class="bigseal"><img src="assets/logo.png" alt="AFRIKANADOLLZ crest"/></div>
+    </div>
+    <div class="reveal">
+      <div class="kicker"><svg class="crown"><use href="#crown"/></svg><span class="eyebrow">Our Story</span></div>
+      <h2>We're <em>Afrikanadolls</em></h2>
+      <p>What started as a chair and a pair of shears on 52nd Street grew into a house — a place where women leave feeling like the most confident version of themselves. Every wig is hand-built, every install is intentional, and every doll is family.</p>
+      <p>We're a Black-owned West Philadelphia studio specializing in custom units, luxury bundles and precision braids. When you sit in our chair, you're not a number. You're a doll.</p>
+      <div class="signoff">— Diaka, Founder</div>
+      <div class="stat-row">
+        <div class="stat"><b>1000+</b><span>Dolls crowned</span></div>
+        <div class="stat"><b>100%</b><span>Hand-crafted</span></div>
+        <div class="stat"><b>52nd St</b><span>West Philly</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="band" id="booking">
+  <div class="wrap">
+    <div class="booking reveal">
+      <div class="info">
+        <div class="kicker"><svg class="crown"><use href="#crown"/></svg><span class="eyebrow">Appointments</span></div>
+        <h2>Book the chair</h2>
+        <p style="margin:0 0 22px;max-width:420px">Installs, custom units, braids and maintenance are by appointment only. Book your slot online, or text us to check availability.</p>
+        <div class="line"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 10h16"/></svg><span>Tue – Sat, by appointment · closed Sun &amp; Mon</span></div>
+        <div class="line"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 6a2 2 0 012-2z"/></svg><span><b>Text (267) 481-4058</b> · text only</span></div>
+        <div class="line"><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>281 S 52nd St, Philadelphia, PA 19139</span></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px">
+          <a href="https://app.acuityscheduling.com/schedule.php?owner=17570553" target="_blank" rel="noopener" class="btn btn-gold"><svg class="crown"><use href="#crown"/></svg>Book online</a>
+          <a href="sms:+12674814058" class="btn btn-outline">Text instead</a>
+        </div>
+      </div>
+      <div class="form">
+        <h3>Prefer we reach out?</h3>
+        <p>Leave your details and we'll text you back — or book instantly online above.</p>
+        <div class="field"><label>Name</label><input id="bkName" placeholder="Your name"/></div>
+        <div class="field"><label>Service</label>
+          <select id="bkSvc"><option>Custom wig consultation</option><option>Wig install</option><option>Braids</option><option>Bundles &amp; closure</option><option>Maintenance / restyle</option></select>
+        </div>
+        <div class="field"><label>Preferred date</label><input id="bkDate" type="date"/></div>
+        <div class="field"><label>Phone</label><input id="bkPhone" placeholder="(267) 000-0000"/></div>
+        <button class="btn btn-ink" onclick="submitBooking()">Send request</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker"><svg class="crown"><use href="#crown"/></svg><span class="eyebrow">Doll Diaries</span></div><h2>The reviews are in</h2></div>
+      <p>A few words from the dolls who left the chair crowned.</p>
+    </div>
+    <div class="quotes reveal">
+      <div class="quote"><div class="stars">★★★★★</div><p>"My custom unit looked like it grew out my scalp. The lace melted and the density was everything. I'm never going anywhere else."</p><div class="who">Brianna T. · Custom Unit</div></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>"Booked a ready-to-ship for a last-minute event and it shipped same day. Quality for the price is unreal."</p><div class="who"> Amina K. · Ready-to-Ship</div></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>"The consultation alone sold me. She listened, measured, and built exactly what I pictured. Real artistry."</p><div class="who">Destiny R. · Custom Wig</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="doll">
+  <div class="inner reveal">
+    <div class="kicker" style="justify-content:center"><svg class="crown"><use href="#crown"/></svg><span class="eyebrow">The List</span></div>
+    <h2>Become a <mark class="mark">Doll</mark></h2>
+    <p>Stay tuned for drops, discounts and stories from the studio. No spam — just slay.</p>
+    <div class="signup">
+      <input id="nlEmail" type="email" placeholder="Enter your email" aria-label="Email"/>
+      <button class="btn btn-gold" onclick="submitNL()">Join</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="medallion"><img src="assets/logo.png" alt="AFRIKANADOLLZ crest"/></div>
+        <p>Wig maker &amp; braid slayer. Hand-crafted custom units and luxury hair from West Philadelphia.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="#products">Ready-to-Ship Wigs</a></li>
+          <li><a href="#atelier">Custom Wigs</a></li>
+          <li><a href="#products">Bundles &amp; Closures</a></li>
+          <li><a href="#collections">American Blues</a></li>
+          <li><a href="#collections">Shop all</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Help</h5>
+        <ul>
+          <li><a href="#">Shipping policy</a></li>
+          <li><a href="#">Returns &amp; cancellation</a></li>
+          <li><a href="tryon.html">Virtual try-on</a></li>
+          <li><a href="#atelier">Custom wig info</a></li>
+          <li><a href="#">Wishlist</a></li>
+          <li><a href="#" onclick="toggleSearch();return false">Search</a></li>
+        </ul>
+      </div>
+      <div class="foot-visit">
+        <h5>Visit &amp; Book</h5>
+        <p>281 S 52nd St<br>Philadelphia, PA 19139</p>
+        <p>Text to book<br><a href="sms:+12674814058">(267) 481-4058</a></p>
+        <div class="pay">
+          <span>VISA</span><span>MC</span><span>AMEX</span><span>DISCOVER</span><span>SHOP PAY</span><span>APPLE PAY</span><span>G PAY</span><span>PAYPAL</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <small>© <span id="yr"></span> AFRIKANA Beauty Studio LLC · All rights reserved</small>
+      <div class="social">
+        <a href="https://instagram.com/afrikanadollz" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="sms:+12674814058" aria-label="Text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5h16v11H8l-4 4V5z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- OVERLAYS -->
+<div class="scrim" id="scrim" onclick="closeAll()"></div>
+
+<aside class="drawer" id="cart" aria-label="Cart">
+  <div class="dh"><h3>Your bag</h3><button class="close" aria-label="Close" onclick="closeAll()">×</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="row"><span class="s">Subtotal</span><span class="v" id="subtotal">$0.00</span></div>
+    <small>Shipping &amp; taxes calculated at checkout.</small>
+    <button class="btn btn-gold" onclick="toast('Checkout is a demo in this prototype')">Check out</button>
+  </div>
+</aside>
+
+<div class="search-panel" id="search">
+  <div class="wrap">
+    <div class="search-row">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gilt-2)" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input placeholder="Search wigs, bundles, braids…" aria-label="Search"/>
+      <button class="close" aria-label="Close search" onclick="toggleSearch()">×</button>
+    </div>
+    <div class="search-sugg">
+      <a href="#products">Straight units</a><a href="#products">Body wave</a><a href="#products">Deep curl</a>
+      <a href="#collections">Blonde 613</a><a href="#atelier">Custom wigs</a><a href="#products">Closures</a>
+    </div>
+  </div>
+</div>
+
+<nav class="mobile-nav" id="mnav" aria-label="Mobile">
+  <div class="mh">
+    <span class="wordmark" style="letter-spacing:.3em;font-family:'Bodoni Moda';font-weight:700">AFRIKANADOLLZ</span>
+    <button class="close" aria-label="Close menu" onclick="closeAll()">×</button>
+  </div>
+  <a href="#collections" onclick="closeAll()">Shop</a>
+  <a href="#atelier" onclick="closeAll()">Custom Wigs</a>
+  <a href="tryon.html">Try-On</a>
+  <a href="#booking" onclick="closeAll()">Book</a>
+  <a href="#story" onclick="closeAll()">Story</a>
+  <a href="#products" onclick="closeAll()">Ready-to-Ship</a>
+  <div class="mmeta">Text (267) 481-4058 · 281 S 52nd St, Philadelphia</div>
+</nav>
+
+<div class="toast" id="toast"><svg class="crown"><use href="#crown"/></svg><span id="toastMsg"></span></div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* promo + service marquees (duplicated for seamless loop) */
+  const promo = ['NEW SEASON — <b>15% OFF</b> READY-TO-SHIP · CODE <b>DOLL15</b>','FREE US SHIPPING OVER <b>$200</b>','CUSTOM UNITS BUILT BY HAND','BOOK YOUR APPOINTMENT · TEXT (267) 481-4058'];
+  const pline = promo.map(p=>'<span>'+p+'</span>').join('<span>✦</span>');
+  document.getElementById('promoTrack').innerHTML = pline+'<span>✦</span>'+pline+'<span>✦</span>';
+  const svc = 'Wig Maker <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 7.6H22l-6 4.6 2.3 7.2L12 17l-6.3 4.4L8 14.2l-6-4.6h7.4z"/></svg> Braid Slayer <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 7.6H22l-6 4.6 2.3 7.2L12 17l-6.3 4.4L8 14.2l-6-4.6h7.4z"/></svg> Custom Units <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 7.6H22l-6 4.6 2.3 7.2L12 17l-6.3 4.4L8 14.2l-6-4.6h7.4z"/></svg> Bundles &amp; Closures <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 7.6H22l-6 4.6 2.3 7.2L12 17l-6.3 4.4L8 14.2l-6-4.6h7.4z"/></svg> Frontals <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.6 7.6H22l-6 4.6 2.3 7.2L12 17l-6.3 4.4L8 14.2l-6-4.6h7.4z"/></svg> ';
+  document.getElementById('svcTrack').innerHTML='<span>'+svc+'</span><span>'+svc+'</span>';
+  document.getElementById('svcTrack2').innerHTML='<span>'+svc+'</span><span>'+svc+'</span>';
+
+  /* currency */
+  const RATES={USD:[1,'$'],GBP:[0.79,'£'],CAD:[1.37,'CA$'],AUD:[1.52,'A$'],EUR:[0.92,'€'],JPY:[156,'¥'],INR:[87,'₹']};
+  let cur='USD';
+  function fmt(usd){const[r,s]=RATES[cur];const v=usd*r;return s+(cur==='JPY'||cur==='INR'?Math.round(v).toLocaleString():v.toFixed(2));}
+  function setCur(c){cur=c;document.querySelectorAll('[data-usd]').forEach(e=>e.textContent=fmt(+e.dataset.usd));renderCart();}
+
+  /* products */
+  const PRODUCTS=[
+    {n:'Silk Straight 24"',m:'HD Lace · Natural Black',p:320,img:'assets/hero.jpg',tag:'Bestseller',wig:'straight',live:true},
+    {n:'Body Wave 22"',m:'5×5 Closure · 1B',p:285,img:'assets/dolls.jpg',tag:'Ready to ship',wig:'wave',live:false},
+    {n:'Deep Curl Bob',m:'Glueless · Pre-plucked',p:210,img:'assets/curly.jpg',tag:'New',wig:'curl',live:false},
+    {n:'Blonde 613 Straight',m:'Full Lace · Pre-toned',p:420,img:'assets/blonde.jpg',tag:'Limited',wig:'blonde',live:true}
+  ];
+  const grid=document.getElementById('prodGrid');
+  grid.innerHTML=PRODUCTS.map((p,i)=>`
+    <article class="card">
+      <div class="pic">
+        <span class="tag">${p.tag}</span>
+        <button class="wish" aria-label="Add to wishlist" onclick="toggleWish(this)">
+          <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-9.2-9C1.3 8 3 4.7 6.2 4.7c2 0 3.2 1.2 3.8 2.3.6-1.1 1.8-2.3 3.8-2.3 3.2 0 4.9 3.3 3.4 6.3C19 15.4 12 20 12 20z"/></svg>
+        </button>
+        <img src="${p.img}" alt="${p.n}"/>
+      </div>
+      <div class="info">
+        <span class="meta">${p.m}</span>
+        <h4>${p.n}</h4>
+        <span class="price" data-usd="${p.p}">${fmt(p.p)}</span>
+        <button class="btn btn-outline add" onclick="addToCart(${i})">Add to bag — <span data-usd="${p.p}">${fmt(p.p)}</span></button>
+        <a class="tryon-link" href="tryon.html?wig=${p.wig}">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
+          Try it on${p.live?'':' in 3D'}
+        </a>
+      </div>
+    </article>`).join('');
+
+  /* wishlist */
+  let wish=0;
+  function toggleWish(el){el.classList.toggle('on');wish+=el.classList.contains('on')?1:-1;
+    const b=document.getElementById('wishBadge');b.style.display=wish>0?'grid':'none';b.textContent=wish;}
+
+  /* cart */
+  let cart=[];
+  function addToCart(i){const p=PRODUCTS[i];const found=cart.find(c=>c.n===p.n);
+    if(found)found.q++;else cart.push({...p,q:1});renderCart();openCart();toast(p.n+' added to your bag');}
+  function changeQty(i,d){cart[i].q+=d;if(cart[i].q<=0)cart.splice(i,1);renderCart();}
+  function renderCart(){
+    const box=document.getElementById('cartItems');
+    const n=cart.reduce((s,c)=>s+c.q,0);
+    const b=document.getElementById('cartBadge');b.style.display=n>0?'grid':'none';b.textContent=n;
+    if(!cart.length){box.innerHTML='<div class="cart-empty"><svg class="crown"><use href="#crown"/></svg><p>Your bag is empty.<br>Time to find your crown.</p></div>';}
+    else{box.innerHTML=cart.map((c,i)=>`
+      <div class="citem">
+        <img src="${c.img}" alt="${c.n}"/>
+        <div><div class="t">${c.n}</div><div class="m">${c.m}</div>
+          <div class="qty"><button onclick="changeQty(${i},-1)" aria-label="Decrease">−</button><span>${c.q}</span><button onclick="changeQty(${i},1)" aria-label="Increase">+</button></div>
+        </div>
+        <div><div class="p">${fmt(c.p*c.q)}</div><button class="rm" onclick="changeQty(${i},-99)">Remove</button></div>
+      </div>`).join('');}
+    const sub=cart.reduce((s,c)=>s+c.p*c.q,0);
+    document.getElementById('subtotal').textContent=fmt(sub);
+  }
+  renderCart();
+
+  /* overlays */
+  const scrim=document.getElementById('scrim');
+  function openCart(){document.getElementById('cart').classList.add('on');scrim.classList.add('on');}
+  function openM(){document.getElementById('mnav').classList.add('on');scrim.classList.add('on');}
+  function toggleSearch(){const s=document.getElementById('search');const on=s.classList.toggle('on');
+    scrim.classList.toggle('on',on);if(on)setTimeout(()=>s.querySelector('input').focus(),200);}
+  function closeAll(){document.querySelectorAll('.drawer,.mobile-nav,.search-panel').forEach(e=>e.classList.remove('on'));scrim.classList.remove('on');}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll();});
+
+  /* forms */
+  function submitNL(){const e=document.getElementById('nlEmail');if(!e.value.includes('@')){toast('Enter a valid email');return;}toast('Welcome to the doll house 👑');e.value='';}
+  function submitBooking(){const n=document.getElementById('bkName').value;if(!n){toast('Add your name so we can text you back');return;}toast('Request sent — we\'ll text you to confirm');}
+
+  /* toast */
+  let tt;
+  function toast(msg){document.getElementById('toastMsg').textContent=msg;const t=document.getElementById('toast');t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2600);}
+
+  /* header shrink */
+  const header=document.getElementById('header');
+  addEventListener('scroll',()=>header.classList.toggle('shrink',scrollY>40));
+
+  /* reveal on scroll */
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
