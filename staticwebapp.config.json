@@ -1,0 +1,16 @@
+{
+  "routes": [
+    { "route": "/api/*", "allowedRoles": ["anonymous"] }
+  ],
+  "navigationFallback": {
+    "rewrite": "index.html",
+    "exclude": ["/api/*", "/assets/*", "*.{png,jpg,jpeg,svg,ico,txt,json}"]
+  },
+  "globalHeaders": {
+    "X-Frame-Options": "DENY",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+    "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://cdn.shopify.com https://cdn-s.acuityscheduling.com; connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://api.stripe.com https://m.stripe.com https://m.stripe.network; frame-src https://js.stripe.com https://hooks.stripe.com; worker-src 'self' blob:; media-src 'self' blob:"
+  }
+}

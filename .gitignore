@@ -1,0 +1,18 @@
+node_modules/
+.env
+.env.local
+.vercel
+local.settings.json
+bin/
+obj/
+.azure/
+.claude/
+
+# Raw phone photo/video dumps used as source material for wig asset prep (see assets/wig_*.png for
+# the actual processed, deployed cutouts) -- large binaries, never referenced by any code, no reason
+# to bloat the repo with them.
+assets/IMG_*.heic
+assets/IMG_*.jpg
+assets/VID_*.mp4
+assets/16872.mp4
+assets/16874.mp4

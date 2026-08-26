@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Your Account — AFRIKANADOLLZ</title>
+<meta name="description" content="Sign in to view your AFRIKANADOLLZ appointment history and billing ledger."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --porcelain:#f6efe3; --porcelain-2:#efe5d3; --paper:#fffaf2;
+  --ink:#141313; --ink-2:#1e1d1c; --ink-soft:#5c554c; --ink-faint:#8b8378;
+  --gilt:#c6972f; --gilt-deep:#8a681c; --gilt-2:#e7be63; --gilt-3:#f0d38f;
+  --champagne:#ead9ae; --honey:#f6d200;
+  --line:rgba(20,19,19,.14); --line-gold:rgba(198,151,47,.45); --line-dark:rgba(240,211,143,.20);
+  --shadow:0 24px 60px -28px rgba(20,19,19,.35);
+  --gold-foil:linear-gradient(135deg,#8a6a1e 0%,#c6972f 22%,#f0d38f 42%,#c6972f 55%,#9c7825 70%,#e7be63 88%,#b98c2c 100%);
+  --ok:#3f7a4c; --ok-bg:rgba(63,122,76,.12); --ok-line:rgba(63,122,76,.35);
+  --bad:#8a231a; --bad-bg:rgba(198,60,47,.09); --bad-line:rgba(198,60,47,.35);
+}
+*{box-sizing:border-box}
+:root{--cursor-crown:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2755%27%20height%3D%2737%27%20viewBox%3D%270%200%2084%2056%27%3E%3Cg%20transform%3D%27rotate%28-18%2026%2022%29%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%276%27%20stroke-linejoin%3D%27round%27%20stroke-linecap%3D%27round%27%20opacity%3D%27.9%27%3E%3Cpath%20d%3D%27M5%2040%20L11%2015%20L23%2029%20L32%206%20L41%2029%20L53%2015%20L59%2040%20Z%27%2F%3E%3Crect%20x%3D%277%27%20y%3D%2740%27%20width%3D%2750%27%20height%3D%274%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%238a681c%27%20stroke-width%3D%273%27%20stroke-linejoin%3D%27round%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M5%2040%20L11%2015%20L23%2029%20L32%206%20L41%2029%20L53%2015%20L59%2040%20Z%27%2F%3E%3Crect%20x%3D%277%27%20y%3D%2740%27%20width%3D%2750%27%20height%3D%274%27%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2711%27%20cy%3D%2713%27%20r%3D%273%27%20fill%3D%27%238a681c%27%20stroke%3D%27white%27%20stroke-width%3D%271.5%27%2F%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%274.5%27%20r%3D%273.4%27%20fill%3D%27%238a681c%27%20stroke%3D%27white%27%20stroke-width%3D%271.5%27%2F%3E%3Ccircle%20cx%3D%2753%27%20cy%3D%2713%27%20r%3D%273%27%20fill%3D%27%238a681c%27%20stroke%3D%27white%27%20stroke-width%3D%271.5%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27%23f6d200%27%3E%3Ccircle%20cx%3D%2758%27%20cy%3D%2738%27%20r%3D%272.6%27%2F%3E%3Ccircle%20cx%3D%2767%27%20cy%3D%2730%27%20r%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%2772%27%20cy%3D%2742%27%20r%3D%272.1%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27%23e7be63%27%3E%3Ccircle%20cx%3D%2763%27%20cy%3D%2745%27%20r%3D%271.5%27%2F%3E%3Ccircle%20cx%3D%2777%27%20cy%3D%2736%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%2770%27%20cy%3D%2720%27%20r%3D%271.6%27%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%27%23f0d38f%27%20stroke-width%3D%271.4%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M79%2027%20l2.4%202.4%20M79%2029.4%20l2.4%20-2.4%27%2F%3E%3Cpath%20d%3D%27M62%2012%20l2%202%20M62%2014%20l2%20-2%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 7 7, auto}
+html{cursor:var(--cursor-crown)}
+a,button,.btn,input,textarea,select,label,summary,[onclick]{cursor:var(--cursor-crown)}
+body{margin:0;background:var(--porcelain);color:var(--ink);font-family:'Jost',system-ui,sans-serif;font-weight:300;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Bodoni Moda',Georgia,serif;font-weight:700;margin:0;line-height:1.05}
+.wrap{max-width:900px;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--gilt-deep);font-weight:500}
+.crown{width:1em;height:.78em;fill:var(--gilt-deep);flex:none}
+:focus-visible{outline:2px solid var(--gilt-deep);outline-offset:3px}
+button,input,select{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;font-family:'Jost';font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:14px 24px;border-radius:2px;cursor:pointer;border:1px solid transparent;transition:.25s;background:none;color:inherit}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold-foil);color:#20170a;font-weight:600}
+.btn-outline{border-color:rgba(20,19,19,.28);color:var(--ink)}
+.btn-outline:hover{background:var(--ink);color:var(--porcelain);border-color:var(--ink)}
+.btn-sm{padding:9px 16px;font-size:11px}
+.btn[disabled]{opacity:.4;pointer-events:none}
+
+header{position:sticky;top:0;z-index:40;background:rgba(246,239,227,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 32px;max-width:1360px;margin:0 auto;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .medallion{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 1px var(--gilt),0 0 0 4px rgba(198,151,47,.16)}
+.brand .medallion img{width:80%}
+.brand .wordmark{font-family:'Bodoni Moda';font-weight:700;font-size:13px;letter-spacing:.34em}
+.back{font-size:12px;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+.back:hover{color:var(--gilt-deep)}
+
+.head{padding:28px 0 16px;text-align:center}
+.head h1{font-size:clamp(28px,4.4vw,44px);margin:8px 0 8px}
+.head p{color:var(--ink-soft);max-width:520px;margin:0 auto;font-size:14.5px}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow)}
+
+/* ---- auth card ---- */
+.auth-card{max-width:420px;margin:0 auto 40px;padding:28px 26px}
+.method-tabs{display:flex;gap:7px;margin-bottom:18px}
+.method-tab{flex:1;font-family:'Jost';font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:10px;border:1px solid rgba(20,19,19,.22);border-radius:2px;background:var(--paper);color:var(--ink-soft);cursor:pointer;transition:.2s}
+.method-tab:hover{border-color:var(--gilt-deep);color:var(--ink)}
+.method-tab.on{background:var(--gold-foil);color:#20170a;border-color:transparent;font-weight:600}
+.field{margin-bottom:14px;text-align:left}
+.field label{display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;color:var(--ink-soft);font-weight:500}
+.field input{width:100%;padding:12px 13px;border:1px solid var(--line);background:var(--porcelain-2);color:var(--ink);border-radius:2px;font-family:'Jost';font-size:13.5px}
+.field input::placeholder{color:var(--ink-faint)}
+.auth-note{font-size:13px;color:var(--ink-soft);line-height:1.6;margin:0 0 16px;text-align:left}
+.auth-note b{color:var(--ink)}
+.form-err{background:rgba(198,60,47,.09);border:1px solid rgba(198,60,47,.35);color:#8a231a;font-size:12.5px;line-height:1.55;padding:10px 13px;border-radius:3px;margin:14px 0 0}
+
+/* ---- account view ---- */
+.acct-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 0 20px;flex-wrap:wrap}
+.acct-topbar .who{font-size:13.5px;color:var(--ink-soft)}
+.acct-topbar .who b{color:var(--ink);font-weight:500}
+.acct-topbar .who .acct-number{margin-left:10px;font-size:11px;letter-spacing:.08em;color:var(--ink-faint)}
+.layout2col{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-bottom:48px;align-items:start}
+@media(max-width:780px){.layout2col{grid-template-columns:1fr}}
+.acct-panel{padding:20px 22px}
+.acct-panel h2{font-size:17px;margin-bottom:14px}
+
+.appt-card{padding:12px 14px;border:1px solid var(--line);border-radius:3px;margin-bottom:8px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--paper)}
+.appt-card:last-child{margin-bottom:0}
+.appt-card .svc{font-family:'Bodoni Moda';font-weight:700;font-size:14px;flex:1;min-width:140px}
+.appt-card .when{font-size:12.5px;color:var(--ink-soft)}
+.appt-status{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:2px;font-weight:500;background:var(--porcelain-2);color:var(--ink-soft)}
+.appt-status.st-confirmed{background:rgba(198,151,47,.14);color:var(--gilt-deep)}
+.appt-status.st-completed{background:var(--ok-bg);color:var(--ok)}
+.appt-status.st-cancelled,.appt-status.st-no_show{background:var(--bad-bg);color:var(--bad)}
+
+.ledger-total{font-size:13.5px;font-weight:500;margin-bottom:12px;color:var(--ink)}
+.ledger-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-soft);flex-wrap:wrap}
+.ledger-row:first-of-type{border-top:none}
+.ledger-row .amt{font-family:'Bodoni Moda';font-weight:700;color:var(--ink);min-width:64px}
+.ledger-row .meth{text-transform:uppercase;font-size:10px;letter-spacing:.08em;color:var(--ink-faint);min-width:58px}
+.ledger-row .svc{flex:1;min-width:110px}
+.ledger-row .date{color:var(--ink-faint)}
+.ledger-row .note{width:100%;font-size:12px;color:var(--ink-faint)}
+
+.loading-note,.empty-note{color:var(--ink-faint);font-size:13px;padding:16px 0;text-align:center}
+
+/* ---- outstanding balance / pay balance ---- */
+.balance-due{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--line-gold);background:rgba(198,151,47,.08);border-radius:3px;margin-bottom:8px}
+.balance-due .info{flex:1;min-width:130px}
+.balance-due .info .svc{display:block;font-family:'Bodoni Moda';font-weight:700;font-size:13.5px}
+.balance-due .info .when{font-size:11.5px;color:var(--ink-soft)}
+.balance-due .owed{font-family:'Bodoni Moda';font-weight:700;font-size:13.5px;color:var(--gilt-deep);white-space:nowrap}
+
+.pay-modal-overlay{position:fixed;inset:0;background:rgba(20,19,19,.55);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
+.pay-modal-overlay[hidden]{display:none}
+.pay-modal{max-width:420px;width:100%;padding:28px 24px;position:relative;max-height:90vh;overflow:auto;text-align:left}
+.pay-modal-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:24px;line-height:1;color:var(--ink-soft);padding:6px}
+.pay-modal-close:hover{color:var(--ink)}
+.pay-modal h3{font-size:16px;margin-bottom:12px;padding-right:20px}
+.pay-modal .amt-line{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px}
+.pay-modal .amt-line b{color:var(--ink);font-family:'Bodoni Moda';font-weight:700}
+.pay-modal .pay-unavailable-note{font-size:13.5px;color:var(--ink-soft);line-height:1.65;margin:0}
+.pay-modal .pay-unavailable-note a{color:var(--gilt-deep);text-decoration:underline}
+#stripePaymentElement{margin-bottom:18px}
+.pay-modal .pay-msg{font-size:12.5px;line-height:1.55;margin-top:12px}
+.pay-modal .pay-msg.ok{color:var(--ok)}
+.pay-modal .pay-msg.err{color:var(--bad)}
+
+.profile-panel{margin-bottom:18px}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.profile-grid{grid-template-columns:1fr}}
+.profile-panel .field textarea{width:100%;padding:12px 13px;border:1px solid var(--line);background:var(--porcelain-2);color:var(--ink);border-radius:2px;font-family:'Jost';font-size:13.5px;resize:vertical;min-height:64px}
+.profile-panel .field{margin-bottom:0}
+.profile-actions{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+.form-msg{font-size:12.5px;line-height:1.5}
+.form-msg.ok{color:var(--ok)}
+.form-msg.err{color:var(--bad)}
+
+footer{background:#0e0d0d;color:var(--champagne);padding:26px 0;margin-top:0;font-size:13px}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+footer a{color:var(--gilt-3)}
+@media(max-width:560px){.wrap{padding:0 18px}.head{padding:22px 0 14px}.brand .wordmark{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="index.html">
+      <span class="medallion"><img src="assets/logo.png" alt="AFRIKANADOLLZ"/></span>
+      <span class="wordmark">AFRIKANADOLLZ</span>
+    </a>
+    <a class="back" href="book.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg>
+      Back to booking
+    </a>
+  </div>
+</header>
+
+<div class="wrap head">
+  <span class="eyebrow">Your Account</span>
+  <h1>Appointments &amp; billing.</h1>
+  <p>Sign in with a magic link to your email, or a one-time code by text — whichever's easier.</p>
+</div>
+
+<!-- ============ AUTH ============ -->
+<div class="wrap" id="authArea">
+  <div class="panel auth-card">
+    <div class="method-tabs" role="tablist" aria-label="Sign-in method">
+      <button type="button" class="method-tab on" data-method="email" role="tab" aria-selected="true">Email link</button>
+      <button type="button" class="method-tab" data-method="sms" role="tab" aria-selected="false">Text code</button>
+    </div>
+    <div id="requestStep"></div>
+    <div id="verifyStep" hidden></div>
+    <div id="signupStep" hidden></div>
+    <div class="form-err" id="authErr" hidden></div>
+  </div>
+</div>
+
+<!-- ============ ACCOUNT ============ -->
+<div class="wrap" id="acctArea" hidden>
+  <div class="acct-topbar">
+    <div class="who">Signed in as <b id="acctName"></b><span class="acct-number" id="acctNumber"></span></div>
+    <button type="button" class="btn btn-outline btn-sm" id="logoutBtn">Log out</button>
+  </div>
+  <section class="panel acct-panel profile-panel">
+    <h2>My hair profile</h2>
+    <form id="profileForm">
+      <div class="profile-grid">
+        <div class="field"><label for="profHairType">Hair type</label><input id="profHairType" type="text" placeholder="e.g. natural, relaxed, locs"/></div>
+        <div class="field"><label for="profHairTexture">Hair texture</label><input id="profHairTexture" type="text" placeholder="e.g. 4c, 3b"/></div>
+        <div class="field"><label for="profAllergies">Allergies</label><textarea id="profAllergies" placeholder="Anything we should know about"></textarea></div>
+        <div class="field"><label for="profPreferences">Preferences</label><textarea id="profPreferences" placeholder="Styling preferences, notes for your stylist"></textarea></div>
+      </div>
+      <div class="profile-actions">
+        <button type="submit" class="btn btn-gold btn-sm" id="profileSaveBtn">Save profile</button>
+        <span class="form-msg" id="profileMsg"></span>
+      </div>
+    </form>
+  </section>
+  <div class="layout2col">
+    <section class="panel acct-panel">
+      <h2>Your appointments</h2>
+      <div id="apptList"><div class="loading-note">Loading…</div></div>
+    </section>
+    <section class="panel acct-panel">
+      <h2>Billing ledger</h2>
+      <div id="balanceDueList"></div>
+      <div class="ledger-total" id="ledgerTotal"></div>
+      <div id="ledgerList"><div class="loading-note">Loading…</div></div>
+    </section>
+  </div>
+</div>
+
+<!-- ============ PAY BALANCE MODAL ============ -->
+<div class="pay-modal-overlay" id="payModalOverlay" hidden>
+  <div class="panel pay-modal" id="payModal" role="dialog" aria-modal="true" aria-label="Pay balance">
+    <button type="button" class="pay-modal-close" id="payModalClose" aria-label="Close">&times;</button>
+    <div id="payModalBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <span>AFRIKANA Beauty Studio LLC · 281 S 52nd St, Philadelphia PA 19139</span>
+    <span>Text <a href="sms:+12674814058">(267) 481-4058</a> · <a href="help.html">Policies</a> · <a href="index.html">afrikanadollz.com</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var TIMEZONE = 'America/New_York';
+  var METHOD_LABEL = {cash_app:'Cash App', zelle:'Zelle', cash:'Cash', other:'Other'};
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  var authArea = document.getElementById('authArea');
+  var acctArea = document.getElementById('acctArea');
+  var requestStep = document.getElementById('requestStep');
+  var verifyStep = document.getElementById('verifyStep');
+  var signupStep = document.getElementById('signupStep');
+  var authErr = document.getElementById('authErr');
+  var methodTabs = document.querySelectorAll('.method-tab');
+  var payModalOverlay = document.getElementById('payModalOverlay');
+  var payModalBody = document.getElementById('payModalBody');
+
+  // appointments/billingEntries stay null until their respective loadX() calls resolve at least
+  // once; renderBalanceDue() (below) needs both before it can compute anything, and null (vs. an
+  // empty array) is how it tells "not loaded yet" apart from "loaded, nothing there".
+  var state = { method: 'email', identifier: null, isNewUser: false, appointments: null, billingEntries: null, stripeJsPromise: null };
+
+  // First whitespace-delimited token of a full name, for use anywhere a greeting shows just a first
+  // name (the account dashboard header here; book.html's small "Hi, X" indicator has its own copy of
+  // this, since this codebase doesn't share JS modules between pages). Falls back to null (never
+  // throws/returns "undefined") so callers can chain their own next-best fallback (email/phone/etc).
+  function firstNameOf(fullName){
+    var s = String(fullName == null ? '' : fullName).trim();
+    if(!s) return null;
+    return s.split(/\s+/)[0];
+  }
+
+  function escapeHtml(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function centsToDisplay(cents){ return '$' + (Number(cents) / 100).toFixed(2); }
+  function formatDateTime(iso){
+    return new Intl.DateTimeFormat('en-US', {timeZone:TIMEZONE, month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit'}).format(new Date(iso));
+  }
+  function formatShortDate(iso){
+    return new Intl.DateTimeFormat('en-US', {timeZone:TIMEZONE, month:'short', day:'numeric'}).format(new Date(iso));
+  }
+
+  function showAuthErr(msg){
+    if(!msg){ authErr.hidden = true; authErr.textContent = ''; return; }
+    authErr.hidden = false; authErr.textContent = msg;
+  }
+
+  // ---------------- method tabs + request step ----------------
+  methodTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      state.method = tab.getAttribute('data-method');
+      methodTabs.forEach(function(t){
+        var on = t === tab;
+        t.classList.toggle('on', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      renderRequestStep();
+    });
+  });
+
+  function renderRequestStep(){
+    verifyStep.hidden = true;
+    signupStep.hidden = true;
+    requestStep.hidden = false;
+    showAuthErr(null);
+    if(state.method === 'email'){
+      requestStep.innerHTML =
+        '<div class="field"><label for="authEmail">Email</label><input id="authEmail" type="email" placeholder="you@email.com" autocomplete="email"/></div>' +
+        '<button type="button" class="btn btn-gold" id="authSendBtn" style="width:100%">Email me a sign-in link</button>';
+    } else {
+      requestStep.innerHTML =
+        '<div class="field"><label for="authPhone">Mobile number</label><input id="authPhone" type="tel" placeholder="(267) 000-0000" autocomplete="tel"/></div>' +
+        '<button type="button" class="btn btn-gold" id="authSendBtn" style="width:100%">Text me a code</button>';
+    }
+    document.getElementById('authSendBtn').addEventListener('click', submitRequest);
+  }
+
+  function submitRequest(){
+    showAuthErr(null);
+    var payload = {method: state.method};
+    if(state.method === 'email'){
+      var email = document.getElementById('authEmail').value.trim();
+      if(!email || !EMAIL_RE.test(email)){ showAuthErr('Please enter a valid email address.'); return; }
+      payload.email = email;
+      state.identifier = email;
+    } else {
+      var phone = document.getElementById('authPhone').value.trim();
+      if(!phone){ showAuthErr('Please enter your mobile number.'); return; }
+      payload.phone = phone;
+      state.identifier = phone;
+    }
+
+    var btn = document.getElementById('authSendBtn');
+    btn.setAttribute('disabled','disabled');
+    fetch('/api/auth/request', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(b){ return {status:r.status, body:b}; });
+    }).then(function(res){
+      btn.removeAttribute('disabled');
+      if(res.status === 200){
+        // Whether this identifier is brand-new drives the "welcome, let's create your account" vs.
+        // ordinary sign-in framing below and, after verify succeeds, whether we ask for a name
+        // before landing on the dashboard. See src/functions/auth/auth.js's header comment for how
+        // this same signal flows through the magic-link (arriving cold via ?token=) case too.
+        state.isNewUser = !!(res.body && res.body.isNewUser);
+        renderVerifyStep();
+      } else {
+        showAuthErr((res.body && res.body.error) || 'Something went wrong. Please try again.');
+      }
+    }).catch(function(){
+      btn.removeAttribute('disabled');
+      showAuthErr('Something went wrong. Please check your connection and try again.');
+    });
+  }
+
+  // ---------------- verify step ----------------
+  function renderVerifyStep(){
+    requestStep.hidden = true;
+    verifyStep.hidden = false;
+    signupStep.hidden = true;
+    showAuthErr(null);
+    var welcome = state.isNewUser
+      ? '<p class="auth-note"><b>Welcome to AFRIKANADOLLZ!</b> Let\'s get your account set up — first, confirm it\'s really you.</p>'
+      : '';
+    if(state.method === 'email'){
+      verifyStep.innerHTML = welcome +
+        '<p class="auth-note">Check your email — we sent a sign-in link to <b>' + escapeHtml(state.identifier) + '</b>. Tap it to finish signing in. The link works once and expires in 15 minutes.</p>' +
+        '<button type="button" class="btn btn-outline" id="authBack" style="width:100%">Use a different email</button>';
+    } else {
+      verifyStep.innerHTML = welcome +
+        '<p class="auth-note">Enter the 6-digit code we texted to <b>' + escapeHtml(state.identifier) + '</b>.</p>' +
+        '<div class="field"><label for="authCode">Code</label><input id="authCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456"/></div>' +
+        '<button type="button" class="btn btn-gold" id="authVerifyBtn" style="width:100%">Verify &amp; sign in</button>' +
+        '<button type="button" class="btn btn-outline" id="authBack" style="width:100%;margin-top:8px">Use a different number</button>';
+      document.getElementById('authVerifyBtn').addEventListener('click', function(){
+        submitVerify({phone: state.identifier, code: document.getElementById('authCode').value.trim()});
+      });
+    }
+    document.getElementById('authBack').addEventListener('click', renderRequestStep);
+  }
+
+  function submitVerify(extra){
+    showAuthErr(null);
+    var payload = {method: state.method};
+    for(var k in extra) payload[k] = extra[k];
+    fetch('/api/auth/verify', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload), credentials:'same-origin'
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(b){ return {status:r.status, body:b}; });
+    }).then(function(res){
+      if(res.status === 200 && res.body && res.body.customer){
+        if(res.body.isNewUser){
+          // A brand-new identifier: the customers row now exists (created at verify time — see
+          // src/functions/auth/auth.js) but has no name yet. Collect it before treating signup as
+          // "done" and dropping them on the dashboard. This branch is reached identically whether
+          // they arrived via the OTP form above or cold via an emailed magic-link ?token=, since
+          // isNewUser comes back on this same verify response either way.
+          renderSignupStep(res.body.customer);
+        } else {
+          enterAccount(res.body.customer);
+        }
+      } else {
+        showAuthErr((res.body && res.body.error) || 'Sign in failed. Please try again.');
+        if(state.method === 'email'){
+          // A used/expired/invalid magic link can't be retried from this screen -- send them back to
+          // request a fresh one rather than stranding them on a dead "check your email" message.
+          renderRequestStep();
+        }
+      }
+    }).catch(function(){
+      showAuthErr('Something went wrong. Please check your connection and try again.');
+    });
+  }
+
+  // ---------------- signup step: brand-new account, collect a name before finishing ----------------
+  function renderSignupStep(customer){
+    requestStep.hidden = true;
+    verifyStep.hidden = true;
+    signupStep.hidden = false;
+    showAuthErr(null);
+    signupStep.innerHTML =
+      '<p class="auth-note"><b>You\'re verified!</b> What should we call you?</p>' +
+      '<div class="field"><label for="signupName">Your name</label><input id="signupName" type="text" placeholder="Full name" autocomplete="name" autofocus/></div>' +
+      '<button type="button" class="btn btn-gold" id="signupSaveBtn" style="width:100%">Create my account</button>';
+    document.getElementById('signupSaveBtn').addEventListener('click', function(){
+      submitSignupName();
+    });
+  }
+
+  function submitSignupName(){
+    var input = document.getElementById('signupName');
+    var name = input.value.trim();
+    showAuthErr(null);
+    if(!name){ showAuthErr('Please enter your name.'); return; }
+    var btn = document.getElementById('signupSaveBtn');
+    btn.setAttribute('disabled','disabled');
+    fetch('/api/account/me', {
+      method:'PATCH', headers:{'Content-Type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({name: name})
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(b){ return {status:r.status, body:b}; });
+    }).then(function(res){
+      btn.removeAttribute('disabled');
+      if(res.status === 200 && res.body && res.body.customer){
+        enterAccount(res.body.customer);
+      } else {
+        showAuthErr((res.body && res.body.error) || 'Could not save your name. Please try again.');
+      }
+    }).catch(function(){
+      btn.removeAttribute('disabled');
+      showAuthErr('Something went wrong. Please check your connection and try again.');
+    });
+  }
+
+  // ---------------- signed-in account view ----------------
+  function enterAccount(customer){
+    authArea.hidden = true;
+    acctArea.hidden = false;
+    var greetName = firstNameOf(customer.name) || customer.email || customer.phone || 'there';
+    document.getElementById('acctName').textContent = greetName;
+    document.getElementById('acctNumber').textContent = customer.number ? customer.number : '';
+    populateProfileForm(customer);
+    state.appointments = null;
+    state.billingEntries = null;
+    loadAppointments();
+    loadBilling();
+  }
+
+  // ---------------- my hair profile (self-editable, syncs with admin.html's Clients tab —
+  // same customers row, same four columns) ----------------
+  function populateProfileForm(customer){
+    document.getElementById('profHairType').value = customer.hair_type || '';
+    document.getElementById('profHairTexture').value = customer.hair_texture || '';
+    document.getElementById('profAllergies').value = customer.allergies || '';
+    document.getElementById('profPreferences').value = customer.preferences || '';
+    var msg = document.getElementById('profileMsg');
+    msg.className = 'form-msg'; msg.textContent = '';
+  }
+
+  document.getElementById('profileForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var msg = document.getElementById('profileMsg');
+    msg.className = 'form-msg'; msg.textContent = '';
+    var payload = {
+      hair_type: document.getElementById('profHairType').value.trim(),
+      hair_texture: document.getElementById('profHairTexture').value.trim(),
+      allergies: document.getElementById('profAllergies').value.trim(),
+      preferences: document.getElementById('profPreferences').value.trim(),
+    };
+    var btn = document.getElementById('profileSaveBtn');
+    btn.setAttribute('disabled','disabled');
+    fetch('/api/account/me', {
+      method:'PATCH', headers:{'Content-Type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(b){ return {status:r.status, body:b}; });
+    }).then(function(res){
+      btn.removeAttribute('disabled');
+      if(res.status === 200 && res.body && res.body.customer){
+        populateProfileForm(res.body.customer);
+        msg.className = 'form-msg ok'; msg.textContent = 'Profile saved.';
+      } else {
+        msg.className = 'form-msg err';
+        msg.textContent = (res.body && res.body.error) || 'Could not save your profile. Please try again.';
+      }
+    }).catch(function(){
+      btn.removeAttribute('disabled');
+      msg.className = 'form-msg err'; msg.textContent = 'Something went wrong. Please check your connection and try again.';
+    });
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', function(){
+    fetch('/api/auth/logout', {method:'POST', credentials:'same-origin'}).then(function(){
+      acctArea.hidden = true;
+      authArea.hidden = false;
+      state.method = 'email'; state.identifier = null; state.isNewUser = false;
+      methodTabs.forEach(function(t){ var on = t.getAttribute('data-method') === 'email'; t.classList.toggle('on', on); t.setAttribute('aria-selected', on?'true':'false'); });
+      renderRequestStep();
+    }).catch(function(){});
+  });
+
+  function loadAppointments(){
+    var wrap = document.getElementById('apptList');
+    wrap.innerHTML = '<div class="loading-note">Loading…</div>';
+    fetch('/api/account/appointments', {credentials:'same-origin'}).then(function(r){
+      if(r.status !== 200){ wrap.innerHTML = '<div class="loading-note">Could not load your appointments.</div>'; return null; }
+      return r.json();
+    }).then(function(data){
+      if(!data) return;
+      var appts = data.appointments || [];
+      state.appointments = appts;
+      renderBalanceDue();
+      if(!appts.length){ wrap.innerHTML = '<div class="empty-note">No appointments on file yet — <a href="book.html" style="color:var(--gilt-deep);text-decoration:underline">book your first visit</a>.</div>'; return; }
+      wrap.innerHTML = '';
+      appts.forEach(function(a){
+        var card = document.createElement('div');
+        card.className = 'appt-card';
+        card.innerHTML =
+          '<span class="svc">' + escapeHtml(a.service_name) + '</span>' +
+          '<span class="when">' + escapeHtml(formatDateTime(a.start_at)) + '</span>' +
+          '<span class="appt-status st-' + a.status + '">' + escapeHtml(a.status.replace('_',' ')) + '</span>';
+        wrap.appendChild(card);
+      });
+    }).catch(function(){ wrap.innerHTML = '<div class="loading-note">Could not load your appointments.</div>'; });
+  }
+
+  function loadBilling(){
+    var wrap = document.getElementById('ledgerList');
+    var totalEl = document.getElementById('ledgerTotal');
+    wrap.innerHTML = '<div class="loading-note">Loading…</div>';
+    totalEl.textContent = '';
+    fetch('/api/account/billing', {credentials:'same-origin'}).then(function(r){
+      if(r.status !== 200){ wrap.innerHTML = '<div class="loading-note">Could not load your billing history.</div>'; return null; }
+      return r.json();
+    }).then(function(data){
+      if(!data) return;
+      var entries = data.entries || [];
+      state.billingEntries = entries;
+      renderBalanceDue();
+      totalEl.textContent = 'Total recorded: ' + centsToDisplay(data.totalCents || 0);
+      if(!entries.length){ wrap.innerHTML = '<div class="empty-note">No payments recorded yet.</div>'; return; }
+      wrap.innerHTML = '';
+      entries.forEach(function(e){
+        var row = document.createElement('div');
+        row.className = 'ledger-row';
+        row.innerHTML =
+          '<span class="amt">' + centsToDisplay(e.amount_cents) + '</span>' +
+          '<span class="meth">' + escapeHtml(METHOD_LABEL[e.method] || e.method) + '</span>' +
+          '<span class="svc">' + escapeHtml(e.service_name) + '</span>' +
+          '<span class="date">' + escapeHtml(formatShortDate(e.created_at)) + '</span>' +
+          (e.note ? '<span class="note">' + escapeHtml(e.note) + '</span>' : '');
+        wrap.appendChild(row);
+      });
+    }).catch(function(){ wrap.innerHTML = '<div class="loading-note">Could not load your billing history.</div>'; });
+  }
+
+  // ---------------- outstanding balance / pay balance ----------------
+  // Neither GET /api/account/appointments nor GET /api/account/billing alone has enough to compute a
+  // per-appointment remaining balance: appointments has each appointment's service price_cents but no
+  // payment history, billing has amount_cents per payment (all sources: manual entries Diaka typed in
+  // admin.html AND prior 'stripe' entries the webhook already recorded) but only for appointments that
+  // already have at least one entry -- an appointment with $0 paid so far wouldn't appear there at all.
+  // So this waits for both loads (see state.appointments/state.billingEntries above) and joins them
+  // client-side by appointment_id, matching exactly what src/functions/account/billingPay.js computes
+  // server-side (and re-verifies server-side before ever creating a PaymentIntent -- this client-side
+  // number is only ever used to decide whether to show a button and what amount to display).
+  function renderBalanceDue(){
+    var wrap = document.getElementById('balanceDueList');
+    if(state.appointments === null || state.billingEntries === null) return;
+    var paidByAppt = {};
+    state.billingEntries.forEach(function(e){
+      paidByAppt[e.appointment_id] = (paidByAppt[e.appointment_id] || 0) + Number(e.amount_cents);
+    });
+    var owed = [];
+    state.appointments.forEach(function(a){
+      if(a.price_cents == null) return;
+      var remaining = Number(a.price_cents) - (paidByAppt[a.id] || 0);
+      if(remaining > 0) owed.push({ appointment: a, remainingCents: remaining });
+    });
+    wrap.innerHTML = '';
+    owed.forEach(function(o){
+      var row = document.createElement('div');
+      row.className = 'balance-due';
+      row.innerHTML =
+        '<div class="info"><span class="svc">' + escapeHtml(o.appointment.service_name) + '</span>' +
+        '<span class="when">' + escapeHtml(formatShortDate(o.appointment.start_at)) + '</span></div>' +
+        '<span class="owed">' + centsToDisplay(o.remainingCents) + ' due</span>' +
+        '<button type="button" class="btn btn-gold btn-sm">Pay balance</button>';
+      row.querySelector('button').addEventListener('click', function(){
+        openPayModal(o.appointment.id, o.appointment.service_name, o.remainingCents);
+      });
+      wrap.appendChild(row);
+    });
+  }
+
+  function closePayModal(){
+    payModalOverlay.hidden = true;
+    payModalBody.innerHTML = '';
+  }
+  document.getElementById('payModalClose').addEventListener('click', closePayModal);
+  payModalOverlay.addEventListener('click', function(e){ if(e.target === payModalOverlay) closePayModal(); });
+
+  function showPayUnavailable(){
+    payModalOverlay.hidden = false;
+    payModalBody.innerHTML =
+      '<h3>Pay balance</h3>' +
+      '<p class="pay-unavailable-note">Card payments aren’t available yet — text us at ' +
+      '<a href="sms:+12674814058">(267) 481-4058</a> to pay your balance.</p>';
+  }
+
+  // Stripe.js is loaded lazily, only once a customer actually opens the pay flow and payments/config
+  // confirms Stripe is set up -- no point pulling a third-party script into every account.html visit
+  // when card payments may not even be configured yet (see showPayUnavailable above).
+  function loadStripeJs(){
+    if(window.Stripe) return Promise.resolve();
+    if(state.stripeJsPromise) return state.stripeJsPromise;
+    state.stripeJsPromise = new Promise(function(resolve, reject){
+      var s = document.createElement('script');
+      s.src = 'https://js.stripe.com/v3/';
+      s.onload = function(){ resolve(); };
+      s.onerror = function(){ state.stripeJsPromise = null; reject(new Error('Could not load Stripe.js')); };
+      document.head.appendChild(s);
+    });
+    return state.stripeJsPromise;
+  }
+
+  function openPayModal(appointmentId, serviceName, remainingCents){
+    fetch('/api/payments/config', { credentials:'same-origin' }).then(function(r){
+      if(r.status !== 200) return { notConfigured: true };
+      return r.json().then(function(b){ return { publishableKey: b.publishableKey }; });
+    }).then(function(res){
+      if(res.notConfigured || !res.publishableKey){ showPayUnavailable(); return; }
+      startPaymentFlow(appointmentId, serviceName, res.publishableKey);
+    }).catch(function(){ showPayUnavailable(); });
+  }
+
+  function startPaymentFlow(appointmentId, serviceName, publishableKey){
+    payModalOverlay.hidden = false;
+    payModalBody.innerHTML = '<h3>Pay balance</h3><div class="loading-note">Preparing payment…</div>';
+    fetch('/api/account/billing/pay', {
+      method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({ appointmentId: appointmentId })
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(b){ return { status:r.status, body:b }; });
+    }).then(function(res){
+      if(res.status === 503){ showPayUnavailable(); return; }
+      if(res.status !== 200 || !res.body || !res.body.clientSecret){
+        payModalBody.innerHTML = '<h3>Pay balance</h3><p class="pay-msg err">' +
+          escapeHtml((res.body && res.body.error) || 'Could not start payment. Please try again.') + '</p>';
+        return;
+      }
+      mountStripeElement(serviceName, res.body.clientSecret, res.body.amountCents, publishableKey);
+    }).catch(function(){
+      payModalBody.innerHTML = '<h3>Pay balance</h3><p class="pay-msg err">Something went wrong. Please check your connection and try again.</p>';
+    });
+  }
+
+  function mountStripeElement(serviceName, clientSecret, amountCents, publishableKey){
+    loadStripeJs().then(function(){
+      var stripe = window.Stripe(publishableKey);
+      payModalBody.innerHTML =
+        '<h3>Pay balance</h3>' +
+        '<p class="amt-line">Remaining balance for <b>' + escapeHtml(serviceName) + '</b>: <b>' + centsToDisplay(amountCents) + '</b></p>' +
+        '<div id="stripePaymentElement"></div>' +
+        '<button type="button" class="btn btn-gold" id="payConfirmBtn" style="width:100%">Pay ' + centsToDisplay(amountCents) + '</button>' +
+        '<div class="pay-msg" id="payMsg"></div>';
+      var elements = stripe.elements({ clientSecret: clientSecret });
+      elements.create('payment').mount('#stripePaymentElement');
+      var payMsg = document.getElementById('payMsg');
+      var confirmBtn = document.getElementById('payConfirmBtn');
+      confirmBtn.addEventListener('click', function(){
+        confirmBtn.setAttribute('disabled','disabled');
+        payMsg.className = 'pay-msg'; payMsg.textContent = '';
+        stripe.confirmPayment({ elements: elements, redirect: 'if_required' }).then(function(result){
+          if(result.error){
+            confirmBtn.removeAttribute('disabled');
+            payMsg.className = 'pay-msg err';
+            payMsg.textContent = result.error.message || 'Payment failed. Please try again.';
+            return;
+          }
+          // Confirmed client-side -- but src/functions/payments/webhook.js is what actually records
+          // the billing_entries row, asynchronously (typically within a second or two, not
+          // synchronously with this confirmation). Don't assume the ledger is instantly up to date:
+          // show a clear "updating" message, wait briefly, then re-fetch once. If it still shows the
+          // old balance after that, that's an expected "still catching up" state, not an error.
+          confirmBtn.hidden = true;
+          payMsg.className = 'pay-msg ok';
+          payMsg.textContent = 'Payment received — updating your balance…';
+          setTimeout(function(){
+            loadBilling();
+            payMsg.textContent = 'Payment received. Your balance below has been updated — if it still shows the old amount, this may take a moment to catch up.';
+            setTimeout(closePayModal, 2600);
+          }, 1500);
+        }).catch(function(){
+          confirmBtn.removeAttribute('disabled');
+          payMsg.className = 'pay-msg err';
+          payMsg.textContent = 'Something went wrong confirming your payment. Please try again.';
+        });
+      });
+    }).catch(function(){
+      payModalBody.innerHTML = '<h3>Pay balance</h3><p class="pay-msg err">Could not load the payment form. Please try again.</p>';
+    });
+  }
+
+  // ---------------- boot ----------------
+  renderRequestStep();
+
+  var bootParams = new URLSearchParams(window.location.search);
+  var urlToken = bootParams.get('token');
+  if(urlToken){
+    state.method = 'email';
+    requestStep.hidden = true;
+    verifyStep.hidden = false;
+    verifyStep.innerHTML = '<p class="auth-note">Signing you in…</p>';
+    // Strip the token from the URL immediately so a page refresh doesn't resubmit an already-used
+    // (or leaked-via-browser-history) token.
+    window.history.replaceState({}, '', window.location.pathname);
+    submitVerify({token: urlToken});
+  } else {
+    // Pre-fill contract with book.html's guest-booking confirmation CTA and lib/email.js's matching
+    // confirmation-email CTA: a guest who just booked gets a link here carrying `?email=` (or, for
+    // completeness, `?phone=`) with what they just typed at booking, so they don't have to retype it
+    // to sign up. Selects the matching method tab and pre-fills that step's field; doesn't touch
+    // verifyStep/signupStep since this is a pre-fill for the request step only, not an active
+    // verification like `?token=` above. If both happen to be present, email wins (it's the default
+    // tab and the identifier book.html/lib/email.js's own CTA links always use).
+    var prefillEmail = bootParams.get('email');
+    var prefillPhone = bootParams.get('phone');
+    if(prefillEmail || prefillPhone){
+      state.method = prefillEmail ? 'email' : 'sms';
+      methodTabs.forEach(function(t){
+        var on = t.getAttribute('data-method') === state.method;
+        t.classList.toggle('on', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      renderRequestStep();
+      if(prefillEmail){
+        var prefEmailInput = document.getElementById('authEmail');
+        if(prefEmailInput) prefEmailInput.value = prefillEmail;
+      } else {
+        var prefPhoneInput = document.getElementById('authPhone');
+        if(prefPhoneInput) prefPhoneInput.value = prefillPhone;
+      }
+      // Not a used-once secret like `?token=`, but tidy the URL up the same way so a refresh/share
+      // doesn't keep carrying it around.
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+    fetch('/api/account/me', {credentials:'same-origin'}).then(function(r){
+      return r.status === 200 ? r.json().catch(function(){ return null; }) : null;
+    }).then(function(data){
+      if(data && data.customer) enterAccount(data.customer);
+    }).catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>

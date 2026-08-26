@@ -23,6 +23,9 @@
     --gold-foil:linear-gradient(135deg,#8a6a1e 0%,#c6972f 22%,#f0d38f 42%,#c6972f 55%,#9c7825 70%,#e7be63 88%,#b98c2c 100%);
   }
   *{box-sizing:border-box}
+:root{--cursor-crown:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2755%27%20height%3D%2737%27%20viewBox%3D%270%200%2084%2056%27%3E%3Cg%20transform%3D%27rotate%28-18%2026%2022%29%27%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%276%27%20stroke-linejoin%3D%27round%27%20stroke-linecap%3D%27round%27%20opacity%3D%27.9%27%3E%3Cpath%20d%3D%27M5%2040%20L11%2015%20L23%2029%20L32%206%20L41%2029%20L53%2015%20L59%2040%20Z%27%2F%3E%3Crect%20x%3D%277%27%20y%3D%2740%27%20width%3D%2750%27%20height%3D%274%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%238a681c%27%20stroke-width%3D%273%27%20stroke-linejoin%3D%27round%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M5%2040%20L11%2015%20L23%2029%20L32%206%20L41%2029%20L53%2015%20L59%2040%20Z%27%2F%3E%3Crect%20x%3D%277%27%20y%3D%2740%27%20width%3D%2750%27%20height%3D%274%27%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2711%27%20cy%3D%2713%27%20r%3D%273%27%20fill%3D%27%238a681c%27%20stroke%3D%27white%27%20stroke-width%3D%271.5%27%2F%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%274.5%27%20r%3D%273.4%27%20fill%3D%27%238a681c%27%20stroke%3D%27white%27%20stroke-width%3D%271.5%27%2F%3E%3Ccircle%20cx%3D%2753%27%20cy%3D%2713%27%20r%3D%273%27%20fill%3D%27%238a681c%27%20stroke%3D%27white%27%20stroke-width%3D%271.5%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27%23f6d200%27%3E%3Ccircle%20cx%3D%2758%27%20cy%3D%2738%27%20r%3D%272.6%27%2F%3E%3Ccircle%20cx%3D%2767%27%20cy%3D%2730%27%20r%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%2772%27%20cy%3D%2742%27%20r%3D%272.1%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27%23e7be63%27%3E%3Ccircle%20cx%3D%2763%27%20cy%3D%2745%27%20r%3D%271.5%27%2F%3E%3Ccircle%20cx%3D%2777%27%20cy%3D%2736%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%2770%27%20cy%3D%2720%27%20r%3D%271.6%27%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%27%23f0d38f%27%20stroke-width%3D%271.4%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M79%2027%20l2.4%202.4%20M79%2029.4%20l2.4%20-2.4%27%2F%3E%3Cpath%20d%3D%27M62%2012%20l2%202%20M62%2014%20l2%20-2%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 7 7, auto}
+html{cursor:var(--cursor-crown)}
+a,button,.btn,input,textarea,select,label,summary,[onclick]{cursor:var(--cursor-crown)}
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--porcelain);color:var(--ink);
     font-family:'Jost',system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.65;
@@ -35,7 +38,7 @@
   .eyebrow{font-family:'Jost';font-weight:500;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gilt-deep)}
   .serif-i{font-family:'Cormorant Garamond';font-style:italic;font-weight:500}
   /* honey highlighter — the signature */
-  .mark{position:relative;white-space:nowrap;color:var(--ink);z-index:0}
+  .mark{position:relative;white-space:nowrap;color:var(--ink);z-index:0;background:none}
   .mark::before{content:"";position:absolute;left:-.12em;right:-.14em;top:16%;bottom:9%;
     background:var(--honey);transform:rotate(-1.6deg) skewX(-4deg);
     border-radius:46% 54% 60% 40%/62% 44% 56% 38%;z-index:-1}
@@ -435,7 +438,7 @@
         <button class="iconbtn" aria-label="Search" onclick="toggleSearch()">
           <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
         </button>
-        <button class="iconbtn" aria-label="Account">
+        <button class="iconbtn" aria-label="Account" onclick="location.href='account.html'">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
         </button>
         <button class="iconbtn" aria-label="Wishlist">
@@ -551,6 +554,7 @@
       </div>
       <p>In stock, styled, and ready to install. Add to cart and check out in minutes.</p>
     </div>
+    <small id="shopNotice" style="display:none;margin:-10px 0 18px;color:var(--ink-faint);font-size:11.5px;letter-spacing:.04em">Showing sample styles — live shop is temporarily unavailable. <a href="sms:+12674814058" style="color:var(--gilt-deep)">Text us to order</a>.</small>
     <div class="prods reveal" id="prodGrid"></div>
   </div>
 </section>
@@ -614,7 +618,7 @@
         <div class="line"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 6a2 2 0 012-2z"/></svg><span><b>Text (267) 481-4058</b> · text only</span></div>
         <div class="line"><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>281 S 52nd St, Philadelphia, PA 19139</span></div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px">
-          <a href="https://app.acuityscheduling.com/schedule.php?owner=17570553" target="_blank" rel="noopener" class="btn btn-gold"><svg class="crown"><use href="#crown"/></svg>Book online</a>
+          <a href="book.html" class="btn btn-gold"><svg class="crown"><use href="#crown"/></svg>Book online</a>
           <a href="sms:+12674814058" class="btn btn-outline">Text instead</a>
         </div>
       </div>
@@ -682,8 +686,10 @@
       <div>
         <h5>Help</h5>
         <ul>
-          <li><a href="#">Shipping policy</a></li>
-          <li><a href="#">Returns &amp; cancellation</a></li>
+          <li><a href="help.html#booking">Booking &amp; deposits</a></li>
+          <li><a href="help.html#shipping">Shipping policy</a></li>
+          <li><a href="help.html#returns">Returns &amp; cancellation</a></li>
+          <li><a href="help.html#privacy">Privacy policy</a></li>
           <li><a href="tryon.html">Virtual try-on</a></li>
           <li><a href="#atelier">Custom wig info</a></li>
           <li><a href="#">Wishlist</a></li>
@@ -718,7 +724,7 @@
   <div class="cart-foot">
     <div class="row"><span class="s">Subtotal</span><span class="v" id="subtotal">$0.00</span></div>
     <small>Shipping &amp; taxes calculated at checkout.</small>
-    <button class="btn btn-gold" onclick="toast('Checkout is a demo in this prototype')">Check out</button>
+    <button class="btn btn-gold" onclick="doCheckout()">Check out</button>
   </div>
 </aside>
 
@@ -769,34 +775,68 @@
   function fmt(usd){const[r,s]=RATES[cur];const v=usd*r;return s+(cur==='JPY'||cur==='INR'?Math.round(v).toLocaleString():v.toFixed(2));}
   function setCur(c){cur=c;document.querySelectorAll('[data-usd]').forEach(e=>e.textContent=fmt(+e.dataset.usd));renderCart();}
 
-  /* products */
-  const PRODUCTS=[
+  /* products -- real Shopify inventory via a backend proxy (src/functions/shopify/products.js), with
+     this static array kept as an offline/fallback catalogue if the Shopify store isn't reachable
+     (wrong/missing credentials, network issue, etc.) so the section never breaks. See
+     lib/shopify.js and src/functions/shopify/{products,cart}.js for the backend half of this. */
+  const FALLBACK_PRODUCTS=[
     {n:'Silk Straight 24"',m:'HD Lace · Natural Black',p:320,img:'assets/hero.jpg',tag:'Bestseller',wig:'straight',live:true},
     {n:'Body Wave 22"',m:'5×5 Closure · 1B',p:285,img:'assets/dolls.jpg',tag:'Ready to ship',wig:'wave',live:false},
     {n:'Deep Curl Bob',m:'Glueless · Pre-plucked',p:210,img:'assets/curly.jpg',tag:'New',wig:'curl',live:false},
     {n:'Blonde 613 Straight',m:'Full Lace · Pre-toned',p:420,img:'assets/blonde.jpg',tag:'Limited',wig:'blonde',live:true}
   ];
+  let PRODUCTS=FALLBACK_PRODUCTS;
+  let shopLive=false; // true once real Shopify products load successfully -- gates doCheckout()
+
   const grid=document.getElementById('prodGrid');
-  grid.innerHTML=PRODUCTS.map((p,i)=>`
-    <article class="card">
-      <div class="pic">
-        <span class="tag">${p.tag}</span>
-        <button class="wish" aria-label="Add to wishlist" onclick="toggleWish(this)">
-          <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-9.2-9C1.3 8 3 4.7 6.2 4.7c2 0 3.2 1.2 3.8 2.3.6-1.1 1.8-2.3 3.8-2.3 3.2 0 4.9 3.3 3.4 6.3C19 15.4 12 20 12 20z"/></svg>
-        </button>
-        <img src="${p.img}" alt="${p.n}"/>
-      </div>
-      <div class="info">
-        <span class="meta">${p.m}</span>
-        <h4>${p.n}</h4>
-        <span class="price" data-usd="${p.p}">${fmt(p.p)}</span>
-        <button class="btn btn-outline add" onclick="addToCart(${i})">Add to bag — <span data-usd="${p.p}">${fmt(p.p)}</span></button>
-        <a class="tryon-link" href="tryon.html?wig=${p.wig}">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
-          Try it on${p.live?'':' in 3D'}
-        </a>
-      </div>
-    </article>`).join('');
+  function renderProducts(){
+    grid.innerHTML=PRODUCTS.map((p,i)=>`
+      <article class="card">
+        <div class="pic">
+          ${p.tag?`<span class="tag">${p.tag}</span>`:''}
+          <button class="wish" aria-label="Add to wishlist" onclick="toggleWish(this)">
+            <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-9.2-9C1.3 8 3 4.7 6.2 4.7c2 0 3.2 1.2 3.8 2.3.6-1.1 1.8-2.3 3.8-2.3 3.2 0 4.9 3.3 3.4 6.3C19 15.4 12 20 12 20z"/></svg>
+          </button>
+          <img src="${p.img}" alt="${p.n}"/>
+        </div>
+        <div class="info">
+          ${p.m?`<span class="meta">${p.m}</span>`:''}
+          <h4>${p.n}</h4>
+          <span class="price" data-usd="${p.p}">${fmt(p.p)}</span>
+          <button class="btn btn-outline add" onclick="addToCart(${i})">Add to bag — <span data-usd="${p.p}">${fmt(p.p)}</span></button>
+          ${p.wig?`<a class="tryon-link" href="tryon.html?wig=${p.wig}">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
+            Try it on${p.live?'':' in 3D'}
+          </a>`:''}
+        </div>
+      </article>`).join('');
+  }
+  renderProducts(); // paint the fallback catalogue immediately -- no flash of an empty grid while
+                     // the live-inventory fetch below is in flight, and it's what stays up if that
+                     // fetch never succeeds.
+
+  /* Fetch real inventory from the connected Shopify store. Any failure (store not configured yet,
+     network error, empty catalogue) just leaves the fallback catalogue in place and surfaces the
+     "shop temporarily unavailable" notice -- the rest of the page (booking, try-on, story, etc.)
+     is completely unaffected either way. */
+  (async function loadShopifyProducts(){
+    const notice=document.getElementById('shopNotice');
+    try{
+      const res=await fetch('/api/shopify/products');
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const data=await res.json();
+      if(!Array.isArray(data.products) || !data.products.length) throw new Error('No live products returned');
+      PRODUCTS=data.products;
+      shopLive=true;
+      if(notice) notice.style.display='none';
+      renderProducts();
+      document.querySelectorAll('[data-usd]').forEach(e=>e.textContent=fmt(+e.dataset.usd));
+    }catch(err){
+      console.warn('Live Shopify catalogue unavailable, showing sample styles instead:',err);
+      shopLive=false;
+      if(notice) notice.style.display='';
+    }
+  })();
 
   /* wishlist */
   let wish=0;
@@ -825,6 +865,38 @@
     document.getElementById('subtotal').textContent=fmt(sub);
   }
   renderCart();
+
+  /* checkout -- hands the bag off to a REAL Shopify-hosted checkout. We don't rebuild checkout
+     ourselves: this creates an actual Shopify cart (src/functions/shopify/cart.js -> Storefront API
+     cartCreate) and redirects to its checkoutUrl, which lives on Shopify's own domain. Only runs when
+     every item in the bag is a real Shopify product (shopLive && has a variantId) -- items added while
+     the fallback catalogue was showing can't be checked out for real, so we say so plainly instead of
+     sending a bogus request. */
+  let checkingOut=false;
+  async function doCheckout(){
+    if(!cart.length){toast('Your bag is empty');return;}
+    if(!shopLive || cart.some(c=>!c.variantId)){
+      toast('Online checkout is temporarily unavailable — text (267) 481-4058 to order');
+      return;
+    }
+    if(checkingOut) return;
+    checkingOut=true;
+    toast('Taking you to secure checkout…');
+    try{
+      const res=await fetch('/api/shopify/cart',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({lines:cart.map(c=>({variantId:c.variantId,quantity:c.q}))})
+      });
+      const data=await res.json().catch(()=>({}));
+      if(!res.ok || !data.checkoutUrl) throw new Error((data&&data.error)||('HTTP '+res.status));
+      location.href=data.checkoutUrl;
+    }catch(err){
+      console.error('Shopify checkout failed:',err);
+      toast('Checkout is unavailable right now — please try again or text us to order');
+      checkingOut=false;
+    }
+  }
 
   /* overlays */
   const scrim=document.getElementById('scrim');
