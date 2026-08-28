@@ -141,6 +141,35 @@ main.wrap{padding:26px 24px 60px}
 .appt-badge.st-completed{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-line)}
 .appt-badge.st-no_show{background:var(--bad-bg);color:var(--bad);border:1px solid var(--bad-line)}
 .appt-badge.st-cancelled{background:var(--off-bg);color:var(--off);border:1px solid var(--off-line)}
+
+/* ---- custom wig orders (order-badge mirrors appt-badge's shape; custom_wig_orders has one extra
+   in-between status appointments don't -- in_progress reuses the same "still active/needs eyes"
+   gold as new (dashed border differentiates it), ready/completed both read as "good outcome" green
+   (opacity dims completed, same treatment cal-chip already uses for a finished appointment), and
+   cancelled reuses the same neutral grey appointments.cancelled gets, not red -- this codebase
+   already treats "cancelled" as a neutral outcome, not a negative one. ---- */
+.order-badge{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:2px;font-weight:500}
+.order-badge.st-new{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-line)}
+.order-badge.st-in_progress{background:var(--warn-bg);color:var(--warn);border:1px dashed var(--warn-line)}
+.order-badge.st-ready{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-line)}
+.order-badge.st-completed{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-line);opacity:.75}
+.order-badge.st-cancelled{background:var(--off-bg);color:var(--off);border:1px solid var(--off-line);text-decoration:line-through}
+.order-row{display:flex;align-items:center;gap:12px;padding:11px 6px;border-top:1px solid var(--line);cursor:pointer;background:none;border-left:none;border-right:none;width:100%;text-align:left;font:inherit;color:inherit}
+.order-row:first-child{border-top:none}
+.order-row:hover{background:var(--porcelain-2)}
+.order-row.selected{background:var(--porcelain-2)}
+.order-row .name{font-weight:500;color:var(--ink);min-width:150px}
+.order-row .meta{font-size:12px;color:var(--ink-soft);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.order-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 24px;margin:16px 0}
+.order-detail-grid .row{padding:8px 0;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+.order-detail-grid .row:nth-child(-n+2){border-top:none}
+.order-detail-grid .row b{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px;font-weight:500}
+.order-detail-grid .row span{color:var(--ink)}
+@media(max-width:700px){.order-detail-grid{grid-template-columns:1fr}.order-detail-grid .row:nth-child(-n+2){border-top:1px solid var(--line)}.order-detail-grid .row:first-child{border-top:none}}
+.client-profile-grid input,.client-profile-grid select{width:100%;padding:10px 11px;border:1px solid var(--line);background:var(--porcelain-2);color:var(--ink);border-radius:2px;font-size:13px;font-family:inherit}
+.status-update-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.status-update-row select{padding:9px 12px;border:1px solid var(--line);background:var(--porcelain-2);color:var(--ink);border-radius:2px;font-size:12.5px}
+.client-search select{padding:11px 13px;border:1px solid var(--line);background:var(--porcelain-2);color:var(--ink);border-radius:2px;font-size:13px}
 .appt-actions{display:flex;gap:6px;flex-wrap:wrap}
 .empty-note{color:var(--ink-faint);font-size:13px;padding:16px 0}
 
@@ -369,6 +398,7 @@ main.wrap{padding:26px 24px 60px}
       <button type="button" class="tab-btn on" data-tab="calendar">Calendar</button>
       <button type="button" class="tab-btn" data-tab="dashboard">Dashboard</button>
       <button type="button" class="tab-btn" data-tab="clients">Clients</button>
+      <button type="button" class="tab-btn" data-tab="customOrders">Custom Orders</button>
       <button type="button" class="tab-btn" data-tab="hours">Hours &amp; Blocks</button>
       <button type="button" class="tab-btn" data-tab="integrations">Integrations</button>
     </div>
@@ -513,6 +543,70 @@ main.wrap{padding:26px 24px 60px}
           </div>
         </form>
         <div id="clientNotesWrap"><div class="empty-note">No notes yet.</div></div>
+      </div>
+    </section>
+
+    <!-- ---- CUSTOM ORDERS TAB ---- -->
+    <section class="tab-panel" id="tab-customOrders">
+      <div class="cal-toolbar">
+        <h2>Custom Orders</h2>
+      </div>
+      <div class="panel card">
+        <h3>Custom wig orders</h3>
+        <p class="sub">Every fully custom wig order submitted through custom-order.html, newest first — this is a product order, not a scheduled appointment. Click an order to see its full measurements, style notes, lace preference and reference photo.</p>
+        <div class="client-search">
+          <select id="orderStatusFilter">
+            <option value="">All statuses</option>
+            <option value="new">New</option>
+            <option value="in_progress">In progress</option>
+            <option value="ready">Ready</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div id="orderListWrap"><div class="loading-note">Loading…</div></div>
+      </div>
+
+      <div class="panel card client-detail" id="orderDetail" hidden>
+        <div class="client-detail-header">
+          <h3 id="orderDetailName"></h3>
+          <span class="contact" id="orderDetailContact"></span>
+        </div>
+
+        <div id="orderDetailBody" class="order-detail-grid"></div>
+
+        <h4 class="client-section-h">Sizing, style &amp; lace corrections</h4>
+        <p class="sub" style="margin-top:-4px">Fix or fill in anything the customer got wrong or left blank — omitted fields stay unchanged.</p>
+        <div class="form-msg" id="orderCorrectionsMsg"></div>
+        <form id="orderCorrectionsForm">
+          <div class="client-profile-grid">
+            <div><label for="ordCapSize">Cap size</label><select id="ordCapSize"><option value="">(unchanged)</option><option value="__clear__">Clear</option><option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option></select></div>
+            <div><label for="ordCircumference">Circumference (in)</label><input id="ordCircumference" type="number" step="0.1" min="0" max="40" placeholder="unchanged"/></div>
+            <div><label for="ordFrontToNape">Front to Nape (in)</label><input id="ordFrontToNape" type="number" step="0.1" min="0" max="40" placeholder="unchanged"/></div>
+            <div><label for="ordEarToEarForehead">Ear to Ear, forehead (in)</label><input id="ordEarToEarForehead" type="number" step="0.1" min="0" max="40" placeholder="unchanged"/></div>
+            <div><label for="ordEarToEarTop">Ear to Ear, over top (in)</label><input id="ordEarToEarTop" type="number" step="0.1" min="0" max="40" placeholder="unchanged"/></div>
+            <div><label for="ordTempleToTemple">Temple to Temple (in)</label><input id="ordTempleToTemple" type="number" step="0.1" min="0" max="40" placeholder="unchanged"/></div>
+            <div><label for="ordNapeOfNeck">Nape of Neck (in)</label><input id="ordNapeOfNeck" type="number" step="0.1" min="0" max="40" placeholder="unchanged"/></div>
+          </div>
+          <div style="margin-top:14px">
+            <label for="ordStyleNotes" style="display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;color:var(--ink-soft)">Style notes <span style="text-transform:none;letter-spacing:0">(leave blank to leave unchanged; type a space to clear)</span></label>
+            <textarea id="ordStyleNotes" placeholder="unchanged" style="width:100%;padding:10px 11px;border:1px solid var(--line);background:var(--porcelain-2);color:var(--ink);border-radius:2px;font-size:13px;font-family:inherit;resize:vertical;min-height:64px"></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold btn-sm" style="margin-top:14px">Save corrections</button>
+        </form>
+
+        <div class="status-update-row">
+          <div class="form-msg" id="orderStatusMsg" style="flex-basis:100%;margin-bottom:0"></div>
+          <label for="ordStatusSelect" style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)">Status</label>
+          <select id="ordStatusSelect">
+            <option value="new">New</option>
+            <option value="in_progress">In progress</option>
+            <option value="ready">Ready</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <button type="button" class="btn btn-outline btn-sm" id="ordStatusSave">Update status</button>
+        </div>
       </div>
     </section>
 
@@ -1993,6 +2087,209 @@ main.wrap{padding:26px 24px 60px}
   });
 
   // ================================================================
+  // CUSTOM ORDERS (list/filter, detail, corrections, status) — src/functions/admin/customOrders.js.
+  // Same list+detail shape as the CLIENTS section above (client-row/client-detail classes are reused
+  // as-is under order-row/order-detail-grid where the shape actually differs, see admin.html's CSS).
+  // ================================================================
+  var ORDER_STATUS_LABEL = {new:'New', in_progress:'In progress', ready:'Ready', completed:'Completed', cancelled:'Cancelled'};
+  var LACE_STYLE_LABEL = {precut:'Pre-cut lace', uncut:'Uncut lace', unsure:'Not sure yet'};
+  var MEASUREMENT_COLS = [
+    ['circumference_in','Circumference'], ['front_to_nape_in','Front to Nape'],
+    ['ear_to_ear_forehead_in','Ear to Ear (forehead)'], ['ear_to_ear_top_in','Ear to Ear (over top)'],
+    ['temple_to_temple_in','Temple to Temple'], ['nape_of_neck_in','Nape of Neck'],
+  ];
+  var orders = { list: [], selectedId: null };
+  var orderStatusFilter = document.getElementById('orderStatusFilter');
+
+  function loadCustomOrders(status){
+    var wrap = document.getElementById('orderListWrap');
+    wrap.innerHTML = '<div class="loading-note">Loading…</div>';
+    var url = '/api/staffconsole/custom-orders' + (status ? '?status=' + encodeURIComponent(status) : '');
+    return apiFetch(url).then(function(res){
+      if(!res.ok){ wrap.innerHTML = '<div class="loading-note">Could not load custom orders.</div>'; return; }
+      orders.list = res.body.orders || [];
+      renderCustomOrdersList();
+    }).catch(function(err){
+      if(err && err.status === 401) return;
+      wrap.innerHTML = '<div class="loading-note">Could not load custom orders.</div>';
+    });
+  }
+
+  function renderCustomOrdersList(){
+    var wrap = document.getElementById('orderListWrap');
+    if(!orders.list.length){
+      wrap.innerHTML = '<div class="empty-note">No custom orders found.</div>';
+      return;
+    }
+    var list = document.createElement('div');
+    list.className = 'client-list';
+    orders.list.forEach(function(o){
+      var when = new Intl.DateTimeFormat('en-US', {timeZone:TIMEZONE, month:'short', day:'numeric', year:'numeric'}).format(new Date(o.created_at));
+      var row = document.createElement('button');
+      row.type = 'button';
+      row.className = 'order-row' + (o.id === orders.selectedId ? ' selected' : '');
+      row.innerHTML =
+        '<span class="name">' + escapeHtml(o.customer_name || '(no name)') + '</span>' +
+        '<span class="meta">' + escapeHtml(when) + ' · ' + escapeHtml(LACE_STYLE_LABEL[o.lace_style] || o.lace_style) + '</span>' +
+        '<span class="order-badge st-' + o.status + '">' + (ORDER_STATUS_LABEL[o.status] || o.status) + '</span>';
+      row.addEventListener('click', function(){ selectCustomOrder(o.id); });
+      list.appendChild(row);
+    });
+    wrap.innerHTML = '';
+    wrap.appendChild(list);
+  }
+
+  orderStatusFilter.addEventListener('change', function(){
+    loadCustomOrders(orderStatusFilter.value || undefined);
+  });
+
+  function selectCustomOrder(id){
+    orders.selectedId = id;
+    renderCustomOrdersList();
+    loadCustomOrderDetail(id);
+  }
+
+  function loadCustomOrderDetail(id){
+    var panel = document.getElementById('orderDetail');
+    panel.hidden = false;
+    document.getElementById('orderDetailName').textContent = 'Loading…';
+    document.getElementById('orderDetailContact').textContent = '';
+    apiFetch('/api/staffconsole/custom-orders/' + id).then(function(res){
+      if(!res.ok){
+        document.getElementById('orderDetailName').textContent = 'Could not load this order.';
+        return;
+      }
+      renderCustomOrderDetail(res.body.order);
+    }).catch(function(err){
+      if(err && err.status === 401) return;
+      document.getElementById('orderDetailName').textContent = 'Could not load this order.';
+    });
+  }
+
+  function fmtMeasurement(v){
+    return (v === null || v === undefined || v === '') ? '(not given)' : (Number(v) + '"');
+  }
+
+  function renderCustomOrderDetail(order){
+    document.getElementById('orderDetailName').textContent = order.customer_name || '(no name)';
+    document.getElementById('orderDetailContact').textContent = [order.customer_email, order.customer_phone].filter(Boolean).join(' · ');
+
+    var when = new Intl.DateTimeFormat('en-US', {timeZone:TIMEZONE, month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit'}).format(new Date(order.created_at));
+    var measurementRows = MEASUREMENT_COLS.map(function(pair){
+      return '<div class="row"><b>' + escapeHtml(pair[1]) + '</b><span>' + escapeHtml(fmtMeasurement(order[pair[0]])) + '</span></div>';
+    }).join('');
+
+    var photoHtml = order.reference_photo_url
+      ? '<a class="appt-photo-link" href="' + escapeHtml(order.reference_photo_url) + '" target="_blank" rel="noopener"><img class="appt-photo-thumb" src="' + escapeHtml(order.reference_photo_url) + '" alt="Reference photo"/>View reference photo</a>'
+      : '(none)';
+
+    document.getElementById('orderDetailBody').innerHTML =
+      '<div class="row"><b>Submitted</b><span>' + escapeHtml(when) + '</span></div>' +
+      '<div class="row"><b>Lace preference</b><span>' + escapeHtml(LACE_STYLE_LABEL[order.lace_style] || order.lace_style) + '</span></div>' +
+      '<div class="row"><b>Cap size</b><span>' + escapeHtml(order.cap_size || '(not given)') + '</span></div>' +
+      '<div class="row"><b>Account</b><span>' + (order.customer_id ? 'Linked customer account' : 'Guest order') + '</span></div>' +
+      measurementRows +
+      '<div class="row" style="grid-column:1/-1"><b>Style notes</b><span>' + escapeHtml(order.style_notes || '(none)') + '</span></div>' +
+      '<div class="row" style="grid-column:1/-1"><b>Reference photo</b><span>' + photoHtml + '</span></div>';
+
+    // Corrections form starts fully blank ("(unchanged)"/placeholder="unchanged") every time a
+    // different order is selected -- see buildOrderUpdate() server-side: an omitted field is left
+    // untouched, so a blank input here must mean "don't touch this," never "clear this to null."
+    document.getElementById('ordCapSize').value = '';
+    document.getElementById('ordCircumference').value = '';
+    document.getElementById('ordFrontToNape').value = '';
+    document.getElementById('ordEarToEarForehead').value = '';
+    document.getElementById('ordEarToEarTop').value = '';
+    document.getElementById('ordTempleToTemple').value = '';
+    document.getElementById('ordNapeOfNeck').value = '';
+    document.getElementById('ordStyleNotes').value = '';
+    document.getElementById('orderCorrectionsMsg').className = 'form-msg';
+    document.getElementById('orderCorrectionsMsg').textContent = '';
+
+    document.getElementById('ordStatusSelect').value = order.status;
+    document.getElementById('orderStatusMsg').className = 'form-msg';
+    document.getElementById('orderStatusMsg').textContent = '';
+  }
+
+  document.getElementById('orderCorrectionsForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!orders.selectedId) return;
+    var msg = document.getElementById('orderCorrectionsMsg');
+    msg.className = 'form-msg'; msg.textContent = '';
+
+    var payload = {};
+    var capSizeRaw = document.getElementById('ordCapSize').value;
+    if(capSizeRaw === '__clear__') payload.capSize = null;
+    else if(capSizeRaw) payload.capSize = capSizeRaw;
+
+    [
+      ['ordCircumference','circumferenceIn'], ['ordFrontToNape','frontToNapeIn'],
+      ['ordEarToEarForehead','earToEarForeheadIn'], ['ordEarToEarTop','earToEarTopIn'],
+      ['ordTempleToTemple','templeToTempleIn'], ['ordNapeOfNeck','napeOfNeckIn'],
+    ].forEach(function(pair){
+      var v = document.getElementById(pair[0]).value.trim();
+      if(v !== '') payload[pair[1]] = Number(v);
+    });
+
+    // Style notes: blank textarea = "leave unchanged" (nothing sent); a single space is the escape
+    // hatch to explicitly clear it, since an empty string can't be told apart from "didn't touch this."
+    var notesRaw = document.getElementById('ordStyleNotes').value;
+    if(notesRaw !== '') payload.styleNotes = notesRaw;
+
+    if(Object.keys(payload).length === 0){
+      msg.className = 'form-msg err'; msg.textContent = 'Change at least one field first.';
+      return;
+    }
+
+    var btn = e.target.querySelector('button[type=submit]');
+    btn.setAttribute('disabled','disabled');
+    apiFetch('/api/staffconsole/custom-orders/' + orders.selectedId, {
+      method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)
+    }).then(function(res){
+      btn.removeAttribute('disabled');
+      if(res.ok){
+        msg.className = 'form-msg ok'; msg.textContent = 'Corrections saved.';
+        renderCustomOrderDetail(res.body.order);
+      } else {
+        msg.className = 'form-msg err';
+        msg.textContent = (res.body && res.body.details && res.body.details.join(' ')) || (res.body && res.body.error) || 'Could not save corrections.';
+      }
+    }).catch(function(err){
+      btn.removeAttribute('disabled');
+      if(err && err.status === 401) return;
+      msg.className = 'form-msg err'; msg.textContent = 'Something went wrong. Please try again.';
+    });
+  });
+
+  document.getElementById('ordStatusSave').addEventListener('click', function(){
+    if(!orders.selectedId) return;
+    var msg = document.getElementById('orderStatusMsg');
+    msg.className = 'form-msg'; msg.textContent = '';
+    var status = document.getElementById('ordStatusSelect').value;
+    var btn = document.getElementById('ordStatusSave');
+    btn.setAttribute('disabled','disabled');
+    apiFetch('/api/staffconsole/custom-orders/' + orders.selectedId, {
+      method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify({status: status})
+    }).then(function(res){
+      btn.removeAttribute('disabled');
+      if(res.ok){
+        msg.className = 'form-msg ok'; msg.textContent = 'Status updated.';
+        for(var i=0;i<orders.list.length;i++){
+          if(orders.list[i].id === orders.selectedId){ orders.list[i].status = res.body.order.status; break; }
+        }
+        renderCustomOrdersList();
+      } else {
+        msg.className = 'form-msg err';
+        msg.textContent = (res.body && res.body.error) || 'Could not update status.';
+      }
+    }).catch(function(err){
+      btn.removeAttribute('disabled');
+      if(err && err.status === 401) return;
+      msg.className = 'form-msg err'; msg.textContent = 'Something went wrong. Please try again.';
+    });
+  });
+
+  // ================================================================
   // INTEGRATIONS — read-only live status (see src/functions/admin/integrationsStatus.js).
   // Nothing here is editable: real config lives in the Function App's environment, not in the DB,
   // so there's nothing safe or meaningful for this UI to "save".
@@ -2029,6 +2326,7 @@ main.wrap{padding:26px 24px 60px}
     loadDashboard(document.getElementById('dashRangeSelect').value);
     loadInsights();
     loadClients();
+    loadCustomOrders();
     loadHours();
     loadBlocks();
     loadIntegrations();

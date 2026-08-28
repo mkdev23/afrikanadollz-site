@@ -303,3 +303,94 @@ CREATE INDEX IF NOT EXISTS idx_rate_limit_events_lookup ON rate_limit_events(buc
 -- one integer that only ever moves forward is enough to represent "everything issued before now is
 -- stale."
 ALTER TABLE admin_account ADD COLUMN IF NOT EXISTS session_epoch INTEGER NOT NULL DEFAULT 1;
+
+-- ============================================================================
+-- Custom wig orders (additive only). A genuinely new capability, confirmed via a live query against
+-- this table's would-be neighbor (`services`) that no "custom wig" service/category exists in the
+-- booking catalog today -- so this is NOT a time-slot appointment (that's the `appointments` table /
+-- src/functions/book.js / book.html, an entirely separate flow), it's a product-order intake: a
+-- customer describes the fully custom unit they want -- head measurements, style requests, a lace-cut
+-- preference -- and Diaka follows up to confirm details, pricing and timeline by hand. Deliberately
+-- its own table rather than shoehorned into `appointments` (which is scheduling-shaped: a
+-- service_id/start_at/end_at slot on the calendar) or `client_notes` (staff-only, requires an existing
+-- customers row) -- an order here needs neither a booked slot nor a prior account to exist.
+--
+-- `customer_name`/`customer_phone`/`customer_email` are the exact same guest-friendly contact columns
+-- as `appointments` above (same NOT NULL-and-required-at-submit-time shape, same
+-- src/functions/customWigOrder.js validateBody() pattern as book.js's, including phone normalization
+-- via lib/phone.js before storage) -- ordering a custom unit never requires an account, same as
+-- booking never has. `customer_id` mirrors appointments.customer_id exactly too: nullable, populated
+-- via lib/customerAuth.js's optionalCustomerId() when a customer session cookie is present at submit
+-- time, NULL for a guest order. NOTE (flagged, not fixed here): src/functions/auth/auth.js's
+-- linkOrphanGuestAppointments only retroactively links the `appointments` table when a guest later
+-- signs up/back in -- it does NOT reach into this table. A guest who places a custom order and only
+-- later creates an account will not see that order retroactively attached the way a guest booking
+-- would. Extending that shared function was deliberately left out of this feature's scope (it's core
+-- logic for a different, already-shipped feature) -- see the task report for this being called out as
+-- a follow-up rather than silently left unhandled.
+--
+-- Six nullable NUMERIC(5,2) measurement columns, inches, decimals allowed (e.g. 21.5) -- NUMERIC
+-- rather than FLOAT for the same "no floating-point display artifacts" reasoning as
+-- billing_entries.amount_cents's header comment, just applied here as fixed-point decimal rather than
+-- integer cents since fractional inches are the actual unit customers measure in. All six are
+-- individually optional -- a customer is never forced to already own a measuring tape before they can
+-- express interest; staff follow up either way (see `status` below). Each has a CHECK bounding it to
+-- (0, 40] inches when present: no real human head measurement (circumference or any of the other
+-- five) comes anywhere close to 40in -- an adult head circumference is roughly 20-24in -- so this is a
+-- generous bound that lets through every legitimate outlier (unusually large/small heads, kids'
+-- units, an unconventional measuring technique) while still catching plain data-entry mistakes (a
+-- stray negative sign, an extra typed digit, centimeters typed where inches were meant). The identical
+-- bound is re-checked in src/functions/customWigOrder.js's validateBody() so a bad value comes back as
+-- a friendly 400 with the offending field name, never an opaque Postgres constraint-violation 500 --
+-- this CHECK is the defense-in-depth backstop, not the primary validation path.
+--
+-- `cap_size` is the alternative, coarser path for a customer who'd rather pick a general size than
+-- measure precisely (custom-order.html's form offers both; whichever the customer actually used is
+-- what gets submitted -- nothing requires both). Constrained to the same three sizes as the standard
+-- wig-industry Small/Medium/Large cap chart shown on that page.
+--
+-- `lace_style` is NOT NULL -- unlike the measurements/cap_size, this is a choice every custom order
+-- needs staff to know before they can start building: 'precut' (the lace is already cut to a hairline
+-- before it ships/is installed), 'uncut' (customer or their stylist cuts it to their own hairline), or
+-- 'unsure' (customer doesn't know yet and wants guidance -- a real, common case for a first custom
+-- order, not an error state).
+--
+-- `style_notes` is deliberately free-text with no rigid enums/lookup columns for color, length,
+-- texture, density, hairline, parting, etc. -- same reasoning already documented on
+-- `client_notes`/customers.preferences above: this is a small single-operator salon, not built for a
+-- rigid style-configurator taxonomy, and a stylist's own shorthand for "24in, bone straight, medium
+-- density, deep side part, natural hairline" communicates better than forcing every request through a
+-- fixed set of dropdowns that will never quite fit what someone actually wants.
+--
+-- `reference_photo_url` reuses src/functions/uploadInspirationPhoto.js completely as-is (upload first,
+-- get a SAS URL back, submit that URL with the real record) -- see that file's header comment for the
+-- storage/security details, all of which apply unchanged here (including the not-yet-solved
+-- blob-retention/cleanup gap flagged there).
+--
+-- `status` is staff workflow tracking, same spirit as appointments.status: new (just submitted, needs
+-- a first look) -> in_progress (Diaka is actively building it) -> ready (done, awaiting pickup/
+-- delivery) -> completed, with cancelled available from any state. `updated_at` is bumped on every
+-- admin PATCH (src/functions/admin/customOrders.js) so staff can see how stale a given status is.
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS custom_wig_orders (
+  id SERIAL PRIMARY KEY,
+  customer_name TEXT NOT NULL,
+  customer_phone TEXT NOT NULL,
+  customer_email TEXT NOT NULL,
+  customer_id INTEGER REFERENCES customers(id),
+  circumference_in NUMERIC(5,2) CHECK (circumference_in IS NULL OR (circumference_in > 0 AND circumference_in <= 40)),
+  front_to_nape_in NUMERIC(5,2) CHECK (front_to_nape_in IS NULL OR (front_to_nape_in > 0 AND front_to_nape_in <= 40)),
+  ear_to_ear_forehead_in NUMERIC(5,2) CHECK (ear_to_ear_forehead_in IS NULL OR (ear_to_ear_forehead_in > 0 AND ear_to_ear_forehead_in <= 40)),
+  ear_to_ear_top_in NUMERIC(5,2) CHECK (ear_to_ear_top_in IS NULL OR (ear_to_ear_top_in > 0 AND ear_to_ear_top_in <= 40)),
+  temple_to_temple_in NUMERIC(5,2) CHECK (temple_to_temple_in IS NULL OR (temple_to_temple_in > 0 AND temple_to_temple_in <= 40)),
+  nape_of_neck_in NUMERIC(5,2) CHECK (nape_of_neck_in IS NULL OR (nape_of_neck_in > 0 AND nape_of_neck_in <= 40)),
+  cap_size TEXT CHECK (cap_size IN ('small', 'medium', 'large')),
+  lace_style TEXT NOT NULL CHECK (lace_style IN ('precut', 'uncut', 'unsure')),
+  style_notes TEXT,
+  reference_photo_url TEXT,
+  status TEXT NOT NULL DEFAULT 'new' CHECK (status IN ('new', 'in_progress', 'ready', 'completed', 'cancelled')),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_custom_wig_orders_customer_id ON custom_wig_orders(customer_id);
+CREATE INDEX IF NOT EXISTS idx_custom_wig_orders_status_created ON custom_wig_orders(status, created_at DESC);

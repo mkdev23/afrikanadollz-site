@@ -215,6 +215,7 @@ footer a{color:var(--gilt-3)}
         <a class="btn btn-gold" href="https://app.acuityscheduling.com/schedule.php?owner=17570553" target="_blank" rel="noopener"><svg class="crown" style="fill:#20170a"><use href="#crown"/></svg>Book this look</a>
         <a class="btn btn-outline" href="index.html#products">Shop units</a>
       </div>
+      <p class="sub" style="margin-top:12px">Want something fully custom instead? <a href="custom-order.html" style="text-decoration:underline">Start a custom wig order</a> — your measurements, style and lace preference.</p>
 
       <div class="ai-stylist">
         <p class="sub">Optional: get Diaka's picks — her eye for what suits your face shape and skin tone, applied to your photo.</p>
@@ -310,7 +311,7 @@ const wigList = document.getElementById('wigList');
 function renderWigs(){
   wigList.innerHTML = WIGS.map(w=>`
     <button class="wig ${w.id===current.id?'on':''} ${suggestedIds.has(w.id)?'ai-pick':''}" onclick="pickWig('${w.id}')">
-      <span class="sw" style="background:${w.real?'#141313':'#1e1d1c'}">
+      <span class="sw" style="background:${w.real?'var(--porcelain-2)':'#1e1d1c'}">
         ${w.real ? `<img src="assets/wig_${w.id}.png" alt="${w.name}">`
                  : `<svg viewBox="0 0 40 40" width="52" height="52"><use href="#crown" x="0" y="0"/></svg>`}
       </span>
